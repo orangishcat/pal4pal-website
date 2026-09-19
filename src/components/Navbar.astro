@@ -1,0 +1,24 @@
+---
+import Img from "./Img.astro";
+import Button from "./Button.astro";
+import logo from "../assets/logo.avif";
+---
+
+<nav class="grid grid-cols-[1fr_auto_1fr] w-full items-center px-6 py-4">
+    <Img src={logo} width={340} />
+    <div class="pl-6 grid grid-cols-[1fr_auto_1fr] justify-center gap-12">
+        <a href="/about" class="text-right">
+            About
+        </a>
+        <a href="/schedule" class="text-center">
+            Schedule
+        </a>
+        <a href="/resources" class="text-left">
+            Resources
+        </a>
+    </div>
+    <div class="flex items-center justify-self-end gap-8">
+        <a href="/contact">Contact</a>
+        <Button href="/signup">Sign Up</Button>
+    </div>
+</nav>

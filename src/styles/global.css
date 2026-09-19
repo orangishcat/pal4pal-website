@@ -1,0 +1,17 @@
+@import "tailwindcss";
+
+/* generated from https://www.realtimecolors.com/?colors=000F06-F8FFFA-13D660-83C3EA-20A2FF&fonts=Inter-Inter */
+@theme {
+    --color-text: oklch(14.85% 0.034 159.07);
+    --color-background: white;
+    --color-primary: oklch(76.62% 0.213 149.05);
+    --color-secondary: oklch(78.83% 0.156 236.12);
+    --color-accent: oklch(69.18% 0.172 246.82);
+}
+
+body {
+    @apply bg-background;
+    font-family:
+        "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande", "Lucida Sans",
+        Arial, sans-serif;
+}

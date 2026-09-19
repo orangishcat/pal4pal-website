@@ -1,0 +1,136 @@
+---
+import Layout from "../components/Layout.astro";
+import Button from "../components/Button.astro";
+import Img from "../components/Img.astro";
+import placeholder from "../assets/placeholder.jpg";
+---
+
+<Layout>
+    <div
+        class="*:flex *:justify-center *:place-items-center *:h-150 *:px-8 *:odd:bg-gray-50
+    [&>div>div.grid]:grid [&>div>div.grid]:grid-cols-2 [&>div>div.grid]:px-16 [&>div>div.grid]:w-full [&>div>div.grid]:max-w-7xl
+    [&>div>div.grid]:gap-12 [&>div>div.grid]:items-center
+    [&>div>div.grid>*:nth-child(odd)]:justify-self-start [&>div>div.grid>*:nth-child(even)]:justify-self-end"
+    >
+        <div class="bg-slate-600! h-180!">
+            <div class="grid">
+                <div class="my-auto space-y-6">
+                    <h1 class="text-5xl text-white font-bold">
+                        Empowering the Youth
+                    </h1>
+                    <p class="text-2xl text-gray-400 max-w-2xl">
+                        Educational math workshops to build solid STEM
+                        foundations in middle-to-high schoolers.
+                    </p>
+                </div>
+                <div class="max-w-md">
+                    <Img src={placeholder} />
+                </div>
+            </div>
+        </div>
+        <div class="h-185!">
+            <div class="py-16">
+                <div class="flex flex-col place-items-center justify-center gap-4 p-6">
+                    <h2 class="text-4xl text-slate-900 font-bold text-center">
+                        Driven by student volunteers
+                    </h2>
+                    <div class="py-16">
+                        <div class="grid grid-cols-2 gap-16">
+                            <Img src={placeholder} class="max-w-sm" />
+                            <div class="">
+                                <h1 class="text-4xl">John Smith</h1>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="flex gap-4">
+                        <Button theme="secondary">About us</Button>
+                        <Button theme="ghost">
+                            Volunteering opportunities
+                        </Button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div>
+            <div class="grid">
+                <div class="flex flex-col gap-4 p-6">
+                    <h2 class="text-4xl font-bold">
+                        AMC-level practice problems
+                    </h2>
+                    <p class="text-xl text-gray-500 max-w-2xl">
+                        Free, online problems spanning various difficulties with
+                        detailed step-by-step explanations.
+                    </p>
+                    <Button theme="secondary">Practice now</Button>
+                </div>
+                <div class="max-w-sm">
+                    <Img src={placeholder} />
+                </div>
+            </div>
+        </div>
+        <div>
+            <div class="grid">
+                <div class="max-w-sm">
+                    <Img src={placeholder} />
+                </div>
+
+                <div class="flex flex-col gap-4 p-6">
+                    <h2 class="text-4xl font-bold">Daily online workshops</h2>
+                    <p class="text-xl text-gray-500 max-w-2xl">
+                        During winter or summer break, we will host
+                        AMC/AIME/MathCounts workshops daily!
+                    </p>
+                    <div class="flex gap-4 mt-1">
+                        <Button theme="accent" href="/signup">
+                            Sign up
+                        </Button>
+                        <Button theme="ghost" href="/schedule">
+                            View schedule
+                        </Button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div>
+            <div class="justify-center h-full py-16">
+                <div>
+                    <h2 class="text-4xl font-bold text-center">Most popular</h2>
+                    <div class="flex py-8">
+                        <div class="border rounded-xl text-center p-16">
+                            <h4 class="text-3xl font-bold">AMC Workshop</h4>
+                            <p>9am-12pm</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div>
+            <div class="justify-center h-full py-16">
+                <div>
+                    <h2 class="text-4xl font-bold text-center">
+                        Student testimonials
+                    </h2>
+                </div>
+            </div>
+        </div>
+        <div class="bg-slate-500! h-100! flex flex-col place-items-center">
+            <div class="my-auto space-y-8 max-w-xl *:text-center">
+                <h1 class="text-5xl text-white font-semibold">
+                    Building strong STEM foundations in students
+                </h1>
+                <div class="flex justify-center gap-4 mt-1 text-xl">
+                    <Button theme="accent" href="/signup">
+                        Sign up
+                    </Button>
+                    <Button
+                        theme="ghost"
+                        href="/schedule"
+                        class="bg-transparent! text-white!"
+                    >
+                        View schedule
+                    </Button>
+                </div>
+            </div>
+        </div>
+    </div>
+</Layout>
