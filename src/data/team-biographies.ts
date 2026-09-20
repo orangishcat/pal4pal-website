@@ -62,29 +62,9 @@ const biographies: Record<string, string[]> = {
   ],
 };
 
-// One grade above the grade stated in each original biography.
-const gradeLevels: Record<string, string> = {
-  "Alex Zhan": "Junior",
-  "Tianlin Liu": "Junior",
-  "Yunfei (Steven) Xia": "Junior",
-  "Catherine J": "Junior",
-  "Franklin Zhou": "Junior",
-  "Charlie Huang": "Sophomore",
-  "Eric Shu": "Sophomore",
-  "Samuel Li": "Sophomore",
-  "Derek Hu": "Sophomore",
-  "Eric Zou": "Sophomore",
-  "Andy Liu": "Sophomore",
-  "Yichen Wu": "Freshman",
-  "Justin Kim": "Freshman",
-  "Vincent Huang": "8th Grade",
-  "Kennan Suen": "7th Grade",
-  "Jonathan Yu": "8th Grade",
-};
-
-export const teamMembers = volunteerSlides.map(({ image, title }) => ({
+export const teamMembers = volunteerSlides.map(({ image, title, subtitle }) => ({
   image,
   title,
-  gradeLevel: gradeLevels[title],
+  gradeLevel: subtitle,
   biography: biographies[title],
 }));

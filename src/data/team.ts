@@ -15,6 +15,25 @@ import portrait13 from "../assets/team/vincent-huang.jpeg";
 import portrait14 from "../assets/team/kennan-suen.jpeg";
 import portrait15 from "../assets/team/jonathan-yu.png";
 
+const gradeLevels: Record<string, string> = {
+  "Alex Zhan": "Junior",
+  "Tianlin Liu": "Junior",
+  "Yunfei (Steven) Xia": "Junior",
+  "Catherine J": "Junior",
+  "Franklin Zhou": "Junior",
+  "Charlie Huang": "Sophomore",
+  "Eric Shu": "Sophomore",
+  "Samuel Li": "Sophomore",
+  "Derek Hu": "Sophomore",
+  "Eric Zou": "Sophomore",
+  "Andy Liu": "Sophomore",
+  "Yichen Wu": "Freshman",
+  "Justin Kim": "Freshman",
+  "Vincent Huang": "8th Grade",
+  "Kennan Suen": "7th Grade",
+  "Jonathan Yu": "8th Grade",
+};
+
 export const volunteerSlides = [
   {
     image: portrait0,
@@ -142,4 +161,4 @@ export const volunteerSlides = [
       "2025 BMT general winner",
     ],
   },
-];
+].map((slide) => ({ ...slide, subtitle: gradeLevels[slide.title] }));
