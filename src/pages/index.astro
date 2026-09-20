@@ -5,48 +5,7 @@ import Img from "../components/Img.astro";
 import placeholder from "../assets/placeholder.jpg";
 import ImageCarousel from "../components/ImageCarousel.astro";
 
-const volunteerSlides = [
-    {
-        image: placeholder,
-        alt: "Placeholder image for John Smith",
-        title: "John Smith",
-        subtitle: "Volunteer instructor",
-        description:
-            "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Helping students discover the joy of mathematics.",
-    },
-    {
-        image: placeholder,
-        alt: "Placeholder image for Jane Doe",
-        title: "Jane Doe",
-        subtitle: "Workshop coordinator",
-        description:
-            "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Creating welcoming spaces to learn and grow.",
-    },
-    {
-        image: placeholder,
-        alt: "Placeholder image for Alex Lee",
-        title: "Alex Lee",
-        subtitle: "Student mentor",
-        description:
-            "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Building confidence one problem at a time.",
-    },
-    {
-        image: placeholder,
-        alt: "Placeholder image for Sam Taylor",
-        title: "Sam Taylor",
-        subtitle: "Volunteer instructor",
-        description:
-            "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sharing a passion for creative problem solving.",
-    },
-    {
-        image: placeholder,
-        alt: "Placeholder image for Jordan Chen",
-        title: "Jordan Chen",
-        subtitle: "Community volunteer",
-        description:
-            "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Connecting students through curiosity and teamwork.",
-    },
-];
+import { volunteerSlides } from "../data/team";
 ---
 
 <Layout>
@@ -103,7 +62,7 @@ const volunteerSlides = [
                         Free, online problems spanning various difficulties with
                         detailed step-by-step explanations.
                     </p>
-                    <Button theme="secondary" href="/practice">
+                    <Button theme="primary" href="/practice">
                         Practice now
                     </Button>
                 </div>
@@ -125,7 +84,7 @@ const volunteerSlides = [
                         AMC/AIME/MathCounts workshops daily!
                     </p>
                     <div class="flex gap-4 mt-1">
-                        <Button theme="accent" href="/signup">
+                        <Button theme="primary" href="/signup">
                             Sign up
                         </Button>
                         <Button theme="ghost" href="/schedule">
@@ -186,7 +145,7 @@ const volunteerSlides = [
                     Building strong STEM foundations in students
                 </h1>
                 <div class="flex justify-center gap-4 mt-1 text-xl">
-                    <Button theme="accent" href="/signup">
+                    <Button theme="primary" href="/signup">
                         Sign up
                     </Button>
                     <Button
