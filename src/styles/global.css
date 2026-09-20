@@ -1,4 +1,5 @@
 @import "tailwindcss";
+@source "../../node_modules/flowbite/lib/esm/components/carousel";
 
 /* generated from https://www.realtimecolors.com/?colors=000F06-F8FFFA-13D660-83C3EA-20A2FF&fonts=Inter-Inter */
 @theme {

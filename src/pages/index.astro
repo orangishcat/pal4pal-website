@@ -3,6 +3,50 @@ import Layout from "../components/Layout.astro";
 import Button from "../components/Button.astro";
 import Img from "../components/Img.astro";
 import placeholder from "../assets/placeholder.jpg";
+import ImageCarousel from "../components/ImageCarousel.astro";
+
+const volunteerSlides = [
+    {
+        image: placeholder,
+        alt: "Placeholder image for John Smith",
+        title: "John Smith",
+        subtitle: "Volunteer instructor",
+        description:
+            "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Helping students discover the joy of mathematics.",
+    },
+    {
+        image: placeholder,
+        alt: "Placeholder image for Jane Doe",
+        title: "Jane Doe",
+        subtitle: "Workshop coordinator",
+        description:
+            "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Creating welcoming spaces to learn and grow.",
+    },
+    {
+        image: placeholder,
+        alt: "Placeholder image for Alex Lee",
+        title: "Alex Lee",
+        subtitle: "Student mentor",
+        description:
+            "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Building confidence one problem at a time.",
+    },
+    {
+        image: placeholder,
+        alt: "Placeholder image for Sam Taylor",
+        title: "Sam Taylor",
+        subtitle: "Volunteer instructor",
+        description:
+            "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sharing a passion for creative problem solving.",
+    },
+    {
+        image: placeholder,
+        alt: "Placeholder image for Jordan Chen",
+        title: "Jordan Chen",
+        subtitle: "Community volunteer",
+        description:
+            "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Connecting students through curiosity and teamwork.",
+    },
+];
 ---
 
 <Layout>
@@ -28,23 +72,21 @@ import placeholder from "../assets/placeholder.jpg";
                 </div>
             </div>
         </div>
-        <div class="h-185!">
-            <div class="py-16">
+        <div class="h-auto! min-h-185">
+            <div class="w-full max-w-5xl py-16">
                 <div class="flex flex-col place-items-center justify-center gap-4 p-6">
                     <h2 class="text-4xl text-slate-900 font-bold text-center">
                         Driven by student volunteers
                     </h2>
-                    <div class="py-16">
-                        <div class="grid grid-cols-2 gap-16">
-                            <Img src={placeholder} class="max-w-sm" />
-                            <div class="">
-                                <h1 class="text-4xl">John Smith</h1>
-                            </div>
-                        </div>
-                    </div>
+                    <ImageCarousel
+                        slides={volunteerSlides}
+                        label="Student volunteers"
+                    />
                     <div class="flex gap-4">
-                        <Button theme="secondary">About us</Button>
-                        <Button theme="ghost">
+                        <Button theme="primary" href="/about">
+                            About us
+                        </Button>
+                        <Button theme="ghost" href="/volunteering">
                             Volunteering opportunities
                         </Button>
                     </div>
@@ -61,7 +103,9 @@ import placeholder from "../assets/placeholder.jpg";
                         Free, online problems spanning various difficulties with
                         detailed step-by-step explanations.
                     </p>
-                    <Button theme="secondary">Practice now</Button>
+                    <Button theme="secondary" href="/practice">
+                        Practice now
+                    </Button>
                 </div>
                 <div class="max-w-sm">
                     <Img src={placeholder} />
@@ -95,10 +139,33 @@ import placeholder from "../assets/placeholder.jpg";
             <div class="justify-center h-full py-16">
                 <div>
                     <h2 class="text-4xl font-bold text-center">Most popular</h2>
-                    <div class="flex py-8">
-                        <div class="border rounded-xl text-center p-16">
+                    <div class="grid grid-cols-3 gap-16 py-8 mt-4">
+                        <div class="border border-gray-400 rounded-xl text-center p-8 w-72 bg-white shadow-xl">
                             <h4 class="text-3xl font-bold">AMC Workshop</h4>
                             <p>9am-12pm</p>
+                            <p class="text-gray-600 mt-4">
+                                In each class, students complete a set of AMC
+                                problems and the instructor goes over the
+                                problems at the end of class.
+                            </p>
+                        </div>
+                        <div class="border border-gray-400 rounded-xl text-center p-8 w-72 bg-white shadow-xl">
+                            <h4 class="text-3xl font-bold">AMC Workshop</h4>
+                            <p>9am-12pm</p>
+                            <p class="text-gray-600 mt-4">
+                                In each class, students complete a set of AMC
+                                problems and the instructor goes over the
+                                problems at the end of class.
+                            </p>
+                        </div>
+                        <div class="border border-gray-400 rounded-xl text-center p-8 w-72 bg-white shadow-xl">
+                            <h4 class="text-3xl font-bold">AMC Workshop</h4>
+                            <p>9am-12pm</p>
+                            <p class="text-gray-600 mt-4">
+                                In each class, students complete a set of AMC
+                                problems and the instructor goes over the
+                                problems at the end of class.
+                            </p>
                         </div>
                     </div>
                 </div>
