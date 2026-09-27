@@ -6,6 +6,7 @@ import placeholder from "../assets/placeholder.jpg";
 import ImageCarousel from "../components/ImageCarousel.astro";
 
 import { volunteerSlides } from "../data/team";
+import { withBase } from "../utils/url";
 ---
 
 <Layout>
@@ -42,10 +43,10 @@ import { volunteerSlides } from "../data/team";
                         label="Student volunteers"
                     />
                     <div class="flex gap-4">
-                        <Button theme="primary" href="/about">
+                        <Button theme="primary" href={withBase("/about")}>
                             About us
                         </Button>
-                        <Button theme="ghost" href="/volunteering">
+                        <Button theme="ghost" href={withBase("/volunteering")}>
                             Volunteering opportunities
                         </Button>
                     </div>
@@ -62,7 +63,7 @@ import { volunteerSlides } from "../data/team";
                         Free, online problems spanning various difficulties with
                         detailed step-by-step explanations.
                     </p>
-                    <Button theme="primary" href="/practice">
+                    <Button theme="primary" href={withBase("/practice")}>
                         Practice now
                     </Button>
                 </div>
@@ -84,10 +85,10 @@ import { volunteerSlides } from "../data/team";
                         AMC/AIME/MathCounts workshops daily!
                     </p>
                     <div class="flex gap-4 mt-1">
-                        <Button theme="primary" href="/signup">
+                        <Button theme="primary" href={withBase("/signup")}>
                             Sign up
                         </Button>
-                        <Button theme="ghost" href="/schedule">
+                        <Button theme="ghost" href={withBase("/schedule")}>
                             View schedule
                         </Button>
                     </div>
@@ -145,12 +146,12 @@ import { volunteerSlides } from "../data/team";
                     Building strong STEM foundations in students
                 </h1>
                 <div class="flex justify-center gap-4 mt-1 text-xl">
-                    <Button theme="primary" href="/signup">
+                    <Button theme="primary" href={withBase("/signup")}>
                         Sign up
                     </Button>
                     <Button
                         theme="ghost"
-                        href="/schedule"
+                        href={withBase("/schedule")}
                         class="bg-transparent! text-white!"
                     >
                         View schedule

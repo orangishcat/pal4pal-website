@@ -2,25 +2,26 @@
 import Img from "./Img.astro";
 import Button from "./Button.astro";
 import logo from "../assets/logo.avif";
+import { withBase } from "../utils/url";
 ---
 
 <nav class="grid grid-cols-[1fr_auto_1fr] w-full items-center px-6 py-4">
-    <a href="/">
+    <a href={withBase("/")}>
         <Img src={logo} width={340} />
     </a>
     <div class="pl-6 grid grid-cols-[1fr_auto_1fr] justify-center gap-12">
-        <a href="/about" class="text-right">
+        <a href={withBase("/about")} class="text-right">
             About
         </a>
-        <a href="/schedule" class="text-center">
+        <a href={withBase("/schedule")} class="text-center">
             Schedule
         </a>
-        <a href="/resources" class="text-left">
+        <a href={withBase("/resources")} class="text-left">
             Resources
         </a>
     </div>
     <div class="flex items-center justify-self-end gap-8">
-        <a href="/contact">Contact</a>
-        <Button href="/signup">Sign Up</Button>
+        <a href={withBase("/contact")}>Contact</a>
+        <Button href={withBase("/signup")}>Sign Up</Button>
     </div>
 </nav>
