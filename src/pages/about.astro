@@ -1,27 +1,26 @@
 ---
 import Layout from "../components/Layout.astro";
 import Img from "../components/Img.astro";
-import placeholder from "../assets/placeholder.jpg";
 import { teamMembers } from "../data/team-biographies";
 ---
 
 <Layout>
     <div class="*:odd:bg-gray-50">
-        <div class="flex place-items-center justify-center py-70 bg-green-950!">
-            <div class="flex flex-col gap-6 place-items-center justify-center *:text-center">
-                <h1 class="text-8xl font-cursive text-white font-extrabold">
+        <div class="flex place-items-center justify-center bg-green-950! px-6 py-32 sm:py-44 lg:py-56">
+            <div class="flex max-w-5xl flex-col gap-8 place-items-center justify-center *:text-center">
+                <h1 class="text-5xl leading-tight font-cursive text-white font-extrabold sm:text-7xl lg:text-8xl">
                     Pal4Pal Education Outreach
                 </h1>
-                <p class="text-2xl text-gray-300 max-w-4xl">
+                <p class="max-w-3xl text-lg leading-relaxed text-green-100/85 sm:text-2xl">
                     We're a nonprofit organization that brings STEM education to
                     students. We believe that a solid education starts with
                     solid foundations in Math and Science.
                 </p>
             </div>
         </div>
-        <div class="py-32 flex flex-col justify-center place-items-center gap-12">
-            <h1 class="text-5xl text-center">How we started</h1>
-            <p class="text-2xl text-gray-600 max-w-4xl">
+        <div class="px-6 py-20 sm:py-28 flex flex-col justify-center place-items-center gap-8 sm:gap-12">
+            <h2 class="text-4xl sm:text-5xl text-center text-green-950">How we started</h2>
+            <p class="text-lg sm:text-2xl leading-relaxed text-gray-600 max-w-4xl">
                 We're a nonprofit organization that brings{" "}
                 <span class="text-primary font-bold">
                     STEM education to students
@@ -38,20 +37,20 @@ import { teamMembers } from "../data/team-biographies";
                 to the community.
             </p>
         </div>
-        <div class="py-32 flex flex-col justify-center place-items-center gap-12">
-            <h1 class="text-5xl text-center">Meet our team</h1>
-            <section>
-                <div class="*:odd:bg-white *:even:bg-green-50 *:rounded-xl mt-8 space-y-48">
+        <div class="px-4 py-20 sm:px-6 sm:py-28 flex flex-col justify-center place-items-center gap-8 sm:gap-12">
+            <h2 id="our-team" class="text-4xl sm:text-5xl text-center text-green-950">Meet our team</h2>
+            <section class="w-full max-w-7xl" aria-labelledby="our-team">
+                <div class="*:odd:bg-white *:even:bg-green-50 *:rounded-2xl mt-4 space-y-16 sm:space-y-24">
                     {teamMembers.map((member, index) => (
                         <article
-                            class="px-8 py-16 shadow-xl"
+                            class="border border-green-950/8 px-6 py-10 shadow-sm sm:px-8 sm:py-16"
                             aria-labelledby={`team-member-${index}`}
                         >
                             <div class="mx-auto grid w-full max-w-7xl items-center gap-8 md:grid-cols-2 md:gap-12 lg:px-16">
                                 <Img
                                     src={member.image}
                                     class:list={[
-                                        "w-full max-w-sm justify-self-center rounded-xl",
+                                        "w-full max-w-sm justify-self-center rounded-xl shadow-sm",
                                         index % 2 === 0
                                             ? "md:justify-self-start"
                                             : "md:order-2 md:justify-self-end",
@@ -61,7 +60,7 @@ import { teamMembers } from "../data/team-biographies";
                                     <div class="space-y-2">
                                         <h3
                                             id={`team-member-${index}`}
-                                            class="text-3xl font-bold text-slate-900"
+                                            class="text-2xl sm:text-3xl leading-tight font-bold text-slate-900"
                                         >
                                             {member.title}
                                         </h3>
