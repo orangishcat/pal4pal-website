@@ -3,7 +3,27 @@ import Layout from "../components/Layout.astro";
 ---
 
 <Layout>
-    <div class="py-8">
-        <h1 class="text-4xl text-center">Contact</h1>
+  <section
+    class="grid min-h-[80vh] place-items-center px-4 py-12 text-[#244535] min-[541px]:px-6 min-[541px]:py-20"
+    aria-labelledby="contact-title"
+  >
+    <div class="relative w-full max-w-3xl border border-[#e9e5d7] bg-[#fffdf5] bg-[repeating-linear-gradient(transparent,transparent_35px,#dfe8df_35px,#dfe8df_36px)] bg-position-[0_10px] px-6 py-10 shadow-[3px_8px_0_#24453508,0_18px_40px_#24453512] min-[541px]:-rotate-1 min-[541px]:px-12 min-[541px]:pt-14 min-[541px]:pb-12">
+      <span
+        class="absolute -top-4 left-1/2 h-9 w-32 -translate-x-1/2 rotate-5 bg-[#c6ddbbcc]"
+        aria-hidden="true"
+      ></span>
+      <h1 class="mb-6 text-[clamp(3.5rem,9vw,5.5rem)] leading-[1.1] font-cursive">
+        Contact us
+      </h1>
+      <p class="text-xl leading-9">
+        Got any questions or suggestions? Contact us at
+      </p>
+      <a
+        class="inline-block max-w-full text-[clamp(1rem,3vw,1.4rem)] leading-[1.8] font-bold wrap-anywhere underline decoration-[#86ae72] decoration-3 underline-offset-7 hover:text-[#4c763b] focus-visible:outline-2 focus-visible:outline-offset-6 focus-visible:outline-[#244535]"
+        href="mailto:pal4pal@pal4paleducationoutreach.org"
+      >
+        pal4pal@pal4paleducationoutreach.org
+      </a>
     </div>
+  </section>
 </Layout>
