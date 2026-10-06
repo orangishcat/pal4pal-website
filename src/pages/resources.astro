@@ -1,0 +1,161 @@
+---
+import { ChevronRight } from "@lucide/astro";
+import Layout from "../components/Layout.astro";
+import ProblemDiagram from "../components/ProblemDiagram.astro";
+import { problemSets } from "../data/practice-problems";
+import { explanations } from "../data/practice-solutions";
+import { withBase } from "../utils/url";
+const years = [2026];
+const yearLabel = "2025–26";
+const resourceUrl = (filename: string) =>
+  withBase(`/resources/problems/${encodeURIComponent(filename)}`);
+---
+
+<Layout>
+  <section
+    aria-labelledby="problems-heading"
+    class="mx-auto max-w-5xl px-5 py-12 sm:px-8 sm:py-20"
+  >
+    <header class="mb-12 max-w-2xl">
+      <h1
+        id="problems-heading"
+        class="text-4xl font-bold tracking-tight text-text sm:text-5xl"
+      >
+        Practice Problems
+      </h1>
+      <p class="mt-5 max-w-xl text-lg leading-relaxed text-gray-600">
+        View past practice problems from different years of Pal4Pal.
+      </p>
+    </header>
+    <div id="practice-list">
+      {years.map((year) => {
+        const sets = problemSets.filter((set) => set.year === year);
+        const count = sets.reduce((sum, set) => sum + set.items.length, 0);
+        return (
+          <section aria-labelledby={`year-${year}`} class="mb-16">
+            <header class="flex items-baseline justify-between gap-4 border-b border-green-800/20 pb-4">
+              <h2
+                id={`year-${year}`}
+                class="scroll-mt-8 text-3xl font-bold text-text"
+              >
+                {yearLabel}
+              </h2>
+              <span class="text-sm text-gray-500">{count} problems</span>
+            </header>
+            {sets.length === 0 ? (
+              <p class="py-8 text-gray-500">
+                No problem sets available for {year} yet.
+              </p>
+            ) : (
+              sets.map((set, setIndex) => (
+                <details
+                  aria-labelledby={`${year}-team-${setIndex}`}
+                  class="group/set mt-6"
+                >
+                  <summary class="flex cursor-pointer list-none items-center gap-3 [&::-webkit-details-marker]:hidden">
+                    <div class="text-gray-400">
+                      <ChevronRight class="transition-transform group-open/set:rotate-90" />
+                    </div>
+                    <div class="flex min-w-0 flex-1 flex-wrap items-baseline justify-between gap-3">
+                      <div>
+                        <h3
+                          id={`${year}-team-${setIndex}`}
+                          class="text-xl font-bold text-text"
+                        >
+                          {set.team} Problem Set
+                        </h3>
+                        <p class="mt-2 text-sm text-gray-600">
+                          By {set.authors}
+                        </p>
+                      </div>
+                      <span class="text-sm text-gray-500">
+                        {set.items.length} problems
+                      </span>
+                    </div>
+                  </summary>
+                  <div class="set-downloads mt-5 flex flex-wrap gap-4 text-sm text-green-800 pl-8">
+                    <a href={resourceUrl(set.problems)}>Problems PDF ↗</a>
+                    <a href={resourceUrl(set.solutions)}>Solutions PDF ↗</a>
+                    {set.document && (
+                      <a href={resourceUrl(set.document)} download>
+                        Editable DOCX
+                      </a>
+                    )}
+                  </div>
+                  <ol class="divide-y divide-gray-200 pl-8">
+                    {set.items.map((problem, index) => {
+                      const id = `problem-${year}-${setIndex}-${index}`;
+                      const explanation = explanations[set.problems]?.[index];
+                      return (
+                        <li class="problem-row py-7 sm:py-9">
+                          <article aria-labelledby={`${id}-heading`}>
+                            <div class="mb-4 flex flex-wrap items-center gap-x-3 gap-y-2">
+                              <h4
+                                id={`${id}-heading`}
+                                class="text-base font-bold text-text"
+                              >
+                                Problem {index + 1}
+                              </h4>
+                              <span class="rounded-full bg-gray-100 px-3 py-1 text-xs font-medium text-gray-600">
+                                {problem.topic}
+                              </span>
+                              <span class="text-xs text-gray-500">
+                                {problem.points} points · {problem.author}
+                              </span>
+                            </div>
+                            <p class="problem-text text-base leading-8 text-gray-800 sm:text-lg">
+                              {problem.text}
+                            </p>
+                            {problem.diagram && (
+                              <ProblemDiagram kind={problem.diagram} />
+                            )}
+                            <details class="answer mt-5 rounded-lg border border-green-800/20 bg-green-50">
+                              <summary class="cursor-pointer rounded-lg px-4 py-3 text-sm font-semibold text-green-800">
+                                Solution
+                              </summary>
+                              <div class="px-4 pb-5 text-gray-800">
+                                <p>
+                                  <strong class="text-sm">Answer: </strong>
+                                  {problem.answer}
+                                </p>
+                                <div class="solution-text mt-4 border-t border-green-800/15 pt-4 text-base leading-7">
+                                  {explanation.paragraphs.map((paragraph) => (
+                                    <p class="mb-3 last:mb-0">{paragraph}</p>
+                                  ))}
+                                </div>
+                              </div>
+                            </details>
+                          </article>
+                        </li>
+                      );
+                    })}
+                  </ol>
+                </details>
+              ))
+            )}
+          </section>
+        );
+      })}
+    </div>
+  </section>
+</Layout>
+
+<style>
+  #practice-list :global(mjx-container[jax="SVG"] > svg) {
+    display: inline-block;
+  }
+</style>
+
+<script is:inline>
+  window.MathJax = {
+    tex: { inlineMath: [["\\(", "\\)"]], displayMath: [["\\[", "\\]"]] },
+    startup: { elements: ["#practice-list"] },
+    svg: { fontCache: "global" },
+  };
+</script>
+<!-- https://docs.mathjax.org/en/stable/web/configuration.html -->
+<script
+  is:inline
+  defer
+  src="https://cdn.jsdelivr.net/npm/mathjax@4.1.0/tex-svg.js"
+></script>
