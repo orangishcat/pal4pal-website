@@ -1,0 +1,30 @@
+---
+title: "Problem 1"
+team: "Team 1"
+topic: "Combinatorics"
+points: 4
+author: "Alex"
+---
+
+Suppose Bob starts with 1 credit. Everyday Bob can choose to go to a casino. On Day \\(i\\) (with \\(i\\) starting from 1), he has a \\(\frac\{101-i\}\{100\}\\) chance to win his gambling. If he wins, he wins a prize of \\(\frac\{1\}\{2^i\}\\) credits. If he loses, then he loses all of the credits accumulated so far, and he has no more money to gamble anymore. Optimally, how many days of gambling should Bob do?
+
+<details class="answer">
+
+<summary>Solution</summary>
+
+<div class="answer-body">
+
+<p><strong>Answer:</strong> \\(4\\) days</p>
+
+<div class="solution-text">
+
+<p>Consider the marginal profit from each day. Bob should continue only while the expected marginal profit is positive; otherwise, the expected amount of money he has decreases.</p>
+<p>On day \\(i\\), the expected revenue is \\(\frac\{101-i\}\{100\}\cdot\frac1\{2^i\}\\). His accumulated money before that day is \\(1+\frac12+\cdots+\frac1\{2^\{i-1\}\}=2-\frac1\{2^\{i-1\}\}\\), so the expected loss is \\(\frac\{i-1\}\{100\}\left(2-\frac1\{2^\{i-1\}\}\right)\\).</p>
+<p>\\[\text\{Marginal profit\}=\frac\{101-i\}\{100\cdot2^i\}-\frac\{i-1\}\{100\}\left(2-\frac1\{2^\{i-1\}\}\right)=\frac\{99+i-(i-1)2^\{i+1\}\}\{100\cdot2^i\}.\\]</p>
+<p>This is positive only for \\(i\leq4\\). Thus, optimally, Bob should gamble for \\(4\\) days.</p>
+
+</div>
+
+</div>
+
+</details>

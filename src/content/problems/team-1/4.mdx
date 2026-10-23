@@ -1,0 +1,29 @@
+---
+title: "Problem 4"
+team: "Team 1"
+topic: "Number Theory"
+points: 4
+author: "Edward"
+---
+
+Find the size (cardinality) of the largest subset \\(S\subseteq\{1,2,3,\ldots,100\}\\) such that for any distinct \\(a,b,c\in S\\), \\(\gcd(a,b,c)=1\\).
+
+<details class="answer">
+
+<summary>Solution</summary>
+
+<div class="answer-body">
+
+<p><strong>Answer:</strong> \\(30\\)</p>
+
+<div class="solution-text">
+
+<p>Reinterpret the condition as allowing each prime to divide at most two selected numbers. Include \\(1\\), which has no prime factors, and all \\(25\\) primes at most \\(100\\).</p>
+<p>The PDF adds the composites \\(86=2\cdot43\\), \\(93=3\cdot31\\), \\(95=5\cdot19\\), and \\(91=7\cdot13\\), using each involved prime only once more. This gives \\(1+25+4=30\\) elements.</p>
+<p>For an upper bound, every composite at most \\(100\\) has a prime factor among \\(2,3,5,7\\). At most eight selected numbers can contain these primes, and at most \\(21\\) selected numbers can avoid them other than \\(1\\) (one for each remaining prime). Hence \\(|S|\leq8+21+1=30\\).</p>
+
+</div>
+
+</div>
+
+</details>

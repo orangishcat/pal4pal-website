@@ -1,0 +1,29 @@
+---
+title: "Problem 3"
+team: "Team 4"
+topic: "Combinatorics"
+points: 4
+author: "Derek"
+---
+
+Ryan has three six-sided dice, one fair, one that rolls threes \\(\frac67\\) of the time, and each of the other five sides equally with probability \\(\frac1\{35\}\\) of the time, and one that rolls threes \\(\frac27\\) of the time, and each of the other five sides equally with probability \\(\frac17\\) of the time. He selects one of the dice at random. The probability he rolls a three given the first two rolls are threes is \\(\frac pq\\). What is the remainder when \\(p+q\\) is divided by 1000?
+
+<details class="answer">
+
+<summary>Solution</summary>
+
+<div class="answer-body">
+
+<p><strong>Answer:</strong> \\(895\\)</p>
+
+<div class="solution-text">
+
+<p>The three dice are chosen with equal probability. Conditional on the first two rolls being threes, the probability that the third roll is a three is</p>
+<p>\\[\frac\{\frac13(\frac16)^3+\frac13(\frac67)^3+\frac13(\frac27)^3\}\{\frac13(\frac16)^2+\frac13(\frac67)^2+\frac13(\frac27)^2\}=\frac\{6961\}\{8934\}.\\]</p>
+<p>Thus \\(p+q=6961+8934=15895\\), whose remainder modulo \\(1000\\) is \\(895\\).</p>
+
+</div>
+
+</div>
+
+</details>

@@ -1,0 +1,31 @@
+---
+title: "Problem 6"
+team: "Team 5"
+topic: "Combinatorics"
+points: 4
+author: "Vincent"
+---
+
+Bob is driving home from work. Suppose Bob's work is located at point \\((0,0,0)\\) and his home is at \\((6,6,6)\\). However, Bob is hungry and wants to go to a burger store. The burger store is located at \\((2,1,3)\\). Bob has little gas, so he wants to use the shortest route through the burger store home. However, along the way, there is a gang at \\((4,3,5)\\), and Bob should avoid this gang. If Bob can only move through consecutive lattice points, how many ways are there for him to get back home?
+
+<details class="answer">
+
+<summary>Solution</summary>
+
+<div class="answer-body">
+
+<p><strong>Answer:</strong> \\(1339200\\)</p>
+
+<div class="solution-text">
+
+<p>A shortest route moves only in positive coordinate directions. To reach the burger store at \\((2,1,3)\\), Bob makes \\(2\\) moves in \\(x\\), \\(1\\) in \\(y\\), and \\(3\\) in \\(z\\), giving \\(\frac\{6!\}\{2!1!3!\}=60\\) routes.</p>
+<p>From the burger store to home, the increments are \\((4,5,3)\\), so there are \\(\frac\{12!\}\{4!5!3!\}=27720\\) shortest routes before excluding the gang.</p>
+<p>Routes through the gang have increments \\((2,2,2)\\) to the gang, then \\((2,3,1)\\) to home. Their number is</p>
+<p>\\[\frac\{6!\}\{2!2!2!\}\cdot\frac\{6!\}\{2!3!1!\}=90\cdot60=5400.\\]</p>
+<p>Subtracting these and multiplying by the routes to the burger store gives \\((27720-5400)\cdot60=1339200\\).</p>
+
+</div>
+
+</div>
+
+</details>

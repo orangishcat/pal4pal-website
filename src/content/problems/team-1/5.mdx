@@ -1,0 +1,30 @@
+---
+title: "Problem 5"
+team: "Team 1"
+topic: "Geometry"
+points: 4
+author: "Kennan"
+---
+
+Suppose for a positive number \\(x\\), we have a quadrilateral with sides \\(x,2,4-x,2\\) in that order. It contains an inscribed circle of radius \\(x\\) with another inscribed quadrilateral in it that has corresponding parallel edges. Find \\(x\\).
+
+<details class="answer">
+
+<summary>Solution</summary>
+
+<div class="answer-body">
+
+<p><strong>Answer:</strong> \\(\frac45\\)</p>
+
+<div class="solution-text">
+
+<p>Call the outer quadrilateral \\(ABCD\\) and the inner one \\(EFGH\\), with corresponding sides parallel. Since \\(EFGH\\) is cyclic, opposite angles sum to \\(180^\circ\\). Parallel sides transfer these angles to \\(ABCD\\), so it is cyclic too. Its equal opposite sides of length \\(2\\) make it an isosceles trapezoid.</p>
+<p>The inradius is \\(x\\), so the altitude is \\(2x\\). The difference of the bases is \\((4-x)-x=4-2x\\), giving horizontal offset \\(2-x\\). Thus</p>
+<p>\\[2x=\sqrt\{4-(2-x)^2\}=\sqrt\{4x-x^2\},\qquad 4x^2=4x-x^2,\qquad 5x^2=4x.\\]</p>
+<p>Since \\(x>0\\), we obtain \\(x=\frac45\\).</p>
+
+</div>
+
+</div>
+
+</details>

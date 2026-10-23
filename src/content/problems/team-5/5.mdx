@@ -1,0 +1,29 @@
+---
+title: "Problem 5"
+team: "Team 5"
+topic: "Combinatorics"
+points: 4
+author: "Vincent"
+---
+
+Alice has 5 friends and they are sitting in a circle and passing a ball around. The ball starts in Alice's hands. What is the probability that Alice ends up with the ball after they pass it 7 times? People cannot pass to themselves or to people outside the circle. When they are passing the ball around, the person with the ball gives it to someone else in the group with equal probability. This counts as a turn, so when passing it 7 times, the ball changes holder 7 times, e.g. Alice \u2013 Bob \u2013 Alice \u2013 Bob \u2013 Alice \u2013 Bob \u2013 Alice \u2013 Bob is 7 turns.
+
+<details class="answer">
+
+<summary>Solution</summary>
+
+<div class="answer-body">
+
+<p><strong>Answer:</strong> \\(\frac\{2604\}\{15625\}\\)</p>
+
+<div class="solution-text">
+
+<p>Let \\(A_n\\) be the probability that Alice holds the ball after the \\(n\\)th pass. To hold it then, she must not have held it after pass \\(n-1\\); if someone else holds it, their next pass goes to Alice with probability \\(\frac15\\). Thus</p>
+<p>\\[A_n=\frac15(1-A_\{n-1\}),\qquad A_0=1.\\]</p>
+<p>Iterating gives \\(A_1=0\\), \\(A_2=\frac15\\), \\(A_3=\frac4\{25\}\\), \\(A_4=\frac\{21\}\{125\}\\), \\(A_5=\frac\{104\}\{625\}\\), \\(A_6=\frac\{521\}\{3125\}\\), and \\(A_7=\frac\{2604\}\{15625\}\\).</p>
+
+</div>
+
+</div>
+
+</details>

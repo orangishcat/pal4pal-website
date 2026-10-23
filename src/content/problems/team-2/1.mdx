@@ -1,0 +1,29 @@
+---
+title: "Problem 1"
+team: "Team 2"
+topic: "Combinatorics"
+points: 4
+author: "Samuel"
+---
+
+Alice and Bob play a two-player game in which the numbers \\(a\\) and \\(b\\) are initially written on the whiteboard. Starting with Alice, the players take turns subtracting 1 or 2 from one of the current numbers written on the whiteboard. The first player to reach 0 as one of the numbers wins. Given that \\(a\\) and \\(b\\) are chosen randomly between 1 to 101 inclusive, what is the probability that \\(a\\) and \\(b\\) are so that Alice has a winning strategy?
+
+<details class="answer">
+
+<summary>Solution</summary>
+
+<div class="answer-body">
+
+<p><strong>Answer:</strong> \\(\frac\{6934\}\{10201\}\\)</p>
+
+<div class="solution-text">
+
+<p>Call a position \\((x,y)\\) winning if the player to move can force a win. Any position with a coordinate equal to \\(1\\) or \\(2\\) is winning. Otherwise, a position is winning if some legal move reaches a losing position, and losing if every move reaches a winning position.</p>
+<p>Induction gives that, when both coordinates are at least \\(3\\), the losing positions are exactly those with \\(x\equiv y\pmod3\\). Among \\(3,4,\ldots,101\\), each residue class contains \\(33\\) numbers, so there are \\(3\cdot33^2=3267\\) losing ordered pairs.</p>
+<p>\\[\Pr(\text\{Alice wins\})=1-\frac\{3267\}\{101^2\}=\frac\{6934\}\{10201\}.\\]</p>
+
+</div>
+
+</div>
+
+</details>

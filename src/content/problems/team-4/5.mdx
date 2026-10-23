@@ -1,0 +1,30 @@
+---
+title: "Problem 5"
+team: "Team 4"
+topic: "Number Theory"
+points: 4
+author: "Andy"
+---
+
+Let \\(a\\) and \\(b\\) be positive integers satisfying \\(\operatorname\{lcm\}(a,b)-\gcd(a,b)=23\\). Find the sum of all possible values of \\(a+b\\).
+
+<details class="answer">
+
+<summary>Solution</summary>
+
+<div class="answer-body">
+
+<p><strong>Answer:</strong> \\(129\\)</p>
+
+<div class="solution-text">
+
+<p>Let \\(d=\gcd(a,b)\\), and set \\(x=\frac ad\\), \\(y=\frac bd\\). Since \\(\operatorname\{lcm\}(a,b)=dxy\\),</p>
+<p>\\[d(xy-1)=23.\\]</p>
+<p>The PDF considers two cases. If \\(d=1\\), then \\(xy=24\\), and it lists the pairs \\((1,24),(2,12),(3,8),(4,6)\\), or their reverses, giving sums \\(25,14,11,10\\). If \\(d=23\\), then \\(xy=2\\), giving \\((a,b)=(46,23)\\) or its reverse and sum \\(69\\).</p>
+<p>The source adds these listed sums: \\(10+11+14+25+69=129\\).</p>
+
+</div>
+
+</div>
+
+</details>

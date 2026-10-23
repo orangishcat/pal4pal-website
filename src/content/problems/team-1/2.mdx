@@ -1,0 +1,30 @@
+---
+title: "Problem 2"
+team: "Team 1"
+topic: "Number Theory"
+points: 5
+author: "Alex"
+---
+
+A number \\(a\\) is \\(n\\)-good if it can be written as \\(r+bn\\) where \\(0\<r\<n\\) and \\(\gcd(r,n)=1\\), \\(\gcd(b,n)=1\\). Find the size of the set of distinct remainders mod \\(3^\{200\}\\) of perfect squares which are \\(3^\{100\}\\)-good. In other words, find \\(\left|\{a^2\bmod 3^\{200\}\mid a^2\text\{ is \}3^\{100\}\text\{-good\}\}\right|\\). Format for answering: If this quantity is expressed in the form of \\(a\times b^k\\), find \\(a+b+k\\).
+
+<details class="answer">
+
+<summary>Solution</summary>
+
+<div class="answer-body">
+
+<p><strong>Answer:</strong> \\(203\\) (the quantity is \\(2\times3^\{198\}\\))</p>
+
+<div class="solution-text">
+
+<p>First count the square residues modulo \\(3^\{100\}\\) that are coprime to \\(3\\). There are \\(\varphi(3^\{100\})=2\cdot3^\{99\}\\) coprime residues. Two such numbers have the same square precisely when they are congruent up to sign modulo \\(3^\{100\}\\), giving \\(3^\{99\}\\) distinct square residues.</p>
+<p>If \\(a^2\equiv r\pmod\{3^\{100\}\}\\) and \\(3\nmid a\\), then</p>
+<p>\\[(a+k\cdot3^\{100\})^2\equiv a^2+2ak\cdot3^\{100\}\pmod\{3^\{200\}\}.\\]</p>
+<p>Because \\(2a\\) is coprime to \\(3^\{100\}\\), varying \\(k\\) covers every possible upper residue. For each \\(r\\), exactly \\(\varphi(3^\{100\})=2\cdot3^\{99\}\\) of these are \\(3^\{100\}\\)-good. Thus the size is \\(3^\{99\}\cdot2\cdot3^\{99\}=2\cdot3^\{198\}\\), and \\(a+b+k=2+3+198=203\\). This lifting argument is also related to Hensel's lemma.</p>
+
+</div>
+
+</div>
+
+</details>

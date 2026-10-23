@@ -1,0 +1,72 @@
+---
+import { ChevronRight } from "@lucide/astro";
+import { getCollection } from "astro:content";
+import { withBase } from "../utils/url";
+import { problemHref, setSlug } from "../utils/problem-slugs";
+
+interface Props {
+  currentSetSlug?: string;
+  currentProblem?: number;
+  /** Marks the "Index" link as the current page. */
+  isIndex?: boolean;
+}
+
+const { currentSetSlug, currentProblem, isIndex } = Astro.props;
+
+const docs = (await getCollection("problems")).sort((a, b) => {
+  const teamOrder = (id: string) => Number(id.match(/team-(\d+)/)?.[1] ?? 0);
+  const n = (id: string) => Number(id.match(/\/(\d+)$/)?.[1] ?? 0);
+  return teamOrder(a.id) - teamOrder(b.id) || n(a.id) - n(b.id);
+});
+
+const sets = [
+  ...new Map(docs.map((doc) => [doc.data.team, docs.filter((d) => d.data.team === doc.data.team)])).entries(),
+];
+
+const linkBase =
+  "rounded px-2 py-1.5 inline-block text-gray-600 hover:bg-green-50 hover:text-green-800";
+---
+
+<nav aria-label="Problems sidebar" class="text-sm">
+  <a
+    href={withBase("/resources")}
+    aria-current={isIndex ? "page" : undefined}
+    class:list={[linkBase, "font-semibold text-text", isIndex && "bg-green-50 text-green-800"]}
+  >
+    Index
+  </a>
+  <h3 class="mt-4 mb-2 text-xs font-bold uppercase tracking-wider text-gray-500">
+    2025–26
+  </h3>
+  {sets.map(([team, teamDocs]) => (
+    <details open={setSlug(team) === currentSetSlug} class="group/set mt-1">
+      <summary class="flex cursor-pointer list-none items-center gap-2 rounded px-2 py-1.5 font-semibold text-text hover:bg-green-50 [&::-webkit-details-marker]:hidden">
+        <ChevronRight
+          size={14}
+          class="shrink-0 transition-transform group-open/set:rotate-90"
+        />
+        <span class="truncate">{team} Set</span>
+      </summary>
+      <ul class="ml-5 border-l border-gray-200 pl-2">
+        {teamDocs.map((doc, index) => {
+          const active = setSlug(team) === currentSetSlug && index + 1 === currentProblem;
+          return (
+            <li>
+              <a
+                href={problemHref(team, index)}
+                aria-current={active ? "page" : undefined}
+                class:list={[
+                  "block truncate rounded px-2 py-1 text-gray-600 hover:bg-green-50 hover:text-green-800",
+                  active && "bg-green-50 font-semibold text-green-800",
+                ]}
+              >
+                Problem {index + 1}
+                <span class="text-xs text-gray-400"> · {doc.data.topic}</span>
+              </a>
+            </li>
+          );
+        })}
+      </ul>
+    </details>
+  ))}
+</nav>

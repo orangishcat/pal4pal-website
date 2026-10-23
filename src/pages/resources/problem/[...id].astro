@@ -1,0 +1,16 @@
+---
+import ProblemDocLayout from "../../../components/ProblemDocLayout.astro";
+import { getCollection } from "astro:content";
+
+export async function getStaticPaths() {
+  const docs = await getCollection("problems");
+  return docs.map((problem) => ({
+    params: { id: problem.id },
+    props: { problem },
+  }));
+}
+
+const { problem } = Astro.props;
+---
+
+<ProblemDocLayout problem={problem} />

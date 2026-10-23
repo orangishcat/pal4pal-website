@@ -1,0 +1,30 @@
+---
+title: "Problem 6"
+team: "Team 3"
+topic: "Number Theory"
+points: 4
+author: "Justin"
+---
+
+Given that \\(20^\{22\}+1\\) has exactly 4 prime divisors \\(p_1\<p_2\<p_3\<p_4\\), determine \\(p_1+p_2\\).
+
+<details class="answer">
+
+<summary>Solution</summary>
+
+<div class="answer-body">
+
+<p><strong>Answer:</strong> \\(490\\)</p>
+
+<div class="solution-text">
+
+<p>If a prime \\(p\\) divides \\(20^\{22\}+1\\), then \\(20^\{22\}\equiv-1\pmod p\\) and \\(20^\{44\}\equiv1\pmod p\\). The multiplicative order \\(d\\) of \\(20\\) modulo \\(p\\) divides \\(44\\) but not \\(22\\), so \\(d=44\\) or \\(d=4\\).</p>
+<p>Case 1: \\(d=44\\). Fermat's little theorem implies \\(44\mid p-1\\). The smallest such prime is \\(89\\). Modulo \\(89\\), \\(2^\{44\}\equiv1\\) and \\(5^\{22\}\equiv-1\\), so \\(20^\{22\}=2^\{44\}5^\{22\}\equiv-1\\).</p>
+<p>Case 2: \\(d=4\\). Then \\(p\mid20^4-1=3\cdot7\cdot19\cdot401\\). None of \\(3,7,19\\) divides \\(20^\{22\}+1\\), while \\(20^\{22\}\equiv400^\{11\}\equiv(-1)^\{11\}\equiv-1\pmod\{401\}\\).</p>
+<p>To establish the two smallest primes, check the remaining primes below \\(401\\) with \\(44\mid p-1\\): \\(353\\) and \\(397\\). We have \\(20^\{22\}\equiv3^\{11\}\not\equiv-1\pmod\{397\}\\). Modulo \\(353\\), \\(2^\{44\}\equiv-1\\), but \\(5^\{22\}\equiv233\cdot207\not\equiv1\\), so \\(20^\{22\}\not\equiv-1\\). Therefore \\(p_1+p_2=89+401=490\\).</p>
+
+</div>
+
+</div>
+
+</details>

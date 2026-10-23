@@ -1,0 +1,28 @@
+---
+title: "Problem 3"
+team: "Team 5"
+topic: "Combinatorics"
+points: 4
+author: "Franklin"
+---
+
+Fred the Frog starts at \\((0,0)\\) of the coordinate plane. He wishes to get to \\((4,4)\\), and each turn he may move one unit right, one unit left, or one unit up. Given that he may never visit the same grid space twice and for any point \\((x,y)\\) that he visits, \\(0\leq x,y\leq4\\), how many ways are there for him to reach the said location?
+
+<details class="answer">
+
+<summary>Solution</summary>
+
+<div class="answer-body">
+
+<p><strong>Answer:</strong> \\(625\\)</p>
+
+<div class="solution-text">
+
+<p>Fred must move up one row at a time. Within a row, he cannot reverse direction without revisiting a grid point. For each upward move, he chooses one of the five possible \\(x\\)-coordinates: \\(0,1,2,3,4\\).</p>
+<p>There are four upward moves, from \\(y=0\\) to \\(1\\), \\(1\\) to \\(2\\), \\(2\\) to \\(3\\), and \\(3\\) to \\(4\\). Therefore the number of paths is \\(5^4=625\\).</p>
+
+</div>
+
+</div>
+
+</details>

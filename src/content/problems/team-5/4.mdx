@@ -1,0 +1,28 @@
+---
+title: "Problem 4"
+team: "Team 5"
+topic: "Combinatorics"
+points: 4
+author: "Franklin"
+---
+
+Alice, Bob, and Carol are in a math relay tournament. Due to poor planning and strategy, each person does not work on the problem until the person before them has finished (Alice starts, Bob starts once Alice is complete, and Carol starts once Bob is complete). Each of them takes a random time between 0 and 5 minutes to solve the problem. Given that there is a 5-minute total time limit, what is the probability that Carol can finish the problem?
+
+<details class="answer">
+
+<summary>Solution</summary>
+
+<div class="answer-body">
+
+<p><strong>Answer:</strong> \\(\frac16\\)</p>
+
+<div class="solution-text">
+
+<p>Use geometric probability. The three solve times range independently over \\([0,5]\\), forming a cube of volume \\(5^3=125\\). Carol finishes in time exactly when their sum is at most \\(5\\).</p>
+<p>This region is a tetrahedron with base area \\(\frac12\cdot5\cdot5=12.5\\) and height \\(5\\). Its volume is \\(\frac13\cdot12.5\cdot5=\frac\{125\}6\\), so the probability is \\(\frac16\\).</p>
+
+</div>
+
+</div>
+
+</details>

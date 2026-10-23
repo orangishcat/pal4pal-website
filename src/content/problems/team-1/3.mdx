@@ -1,0 +1,31 @@
+---
+title: "Problem 3"
+team: "Team 1"
+topic: "Algebra"
+points: 5
+author: "Edward"
+---
+
+Consider the sequence \\(\{a_n\}\\), where \\(a_n\\) is the \\(n\\)th term in the sequence defined by \\(a_1=1\\), \\(a_2=2\\) and the recursive relation \\(a_n=4a_\{n-1\}-4a_\{n-2\}+1\\) for all \\(n\geq3\\). It is possible to define \\(a_n\\) for all \\(n\leq0\\) requiring the recurrence relation to also be true for \\(n\leq2\\). In this way, all \\(a_n\\) for \\(n\leq0\\) can be written as \\(\frac\{a\}\{2^b\}\\), where \\(a\\) is odd. Find the sum of the absolute values for the greatest (least negative, e.g. \\(-5>-7\\)) 3 \\(n\\)'s where the value of \\(b\\) for \\(n\\) and \\(n+1\\) differs by at least 9. For example: \\(n=-5\\) does not satisfy this condition because \\(a_\{-5\}=\frac\{61\}\{2^6\}\\) and \\(a_\{-4\}=\frac\{59\}\{2^6\}\\), and the exponents (the 6's) do not differ by at least 9.
+
+<details class="answer">
+
+<summary>Solution</summary>
+
+<div class="answer-body">
+
+<p><strong>Answer:</strong> \\(1536\\)</p>
+
+<div class="solution-text">
+
+<p>First solve the homogeneous recurrence \\(a_n=4a_\{n-1\}-4a_\{n-2\}\\). Its characteristic equation is \\(t^2-4t+4=0\\), with repeated root \\(2\\), so its general solution is \\(\lambda_1 2^n+\lambda_2 n2^n\\).</p>
+<p>The constant sequence \\(a_n=1\\) is a particular solution of the original recurrence. Adding this and using the initial conditions gives</p>
+<p>\\[a_n=\lambda_1 2^n+\lambda_2 n2^n+1,\qquad \lambda_1=-\frac14,\quad\lambda_2=\frac14,\qquad a_n=2^\{n-2\}(n-1)+1.\\]</p>
+<p>For nonpositive \\(n\\), the denominator exponent in lowest terms is \\(b=2-n-v_2(|n-1|)\\), where \\(v_2(x)\\) counts the factors of \\(2\\) in \\(x\\). A change of at least \\(9\\) requires a sufficiently large change in this valuation.</p>
+<p>The three greatest qualifying indices are \\(-256,-512,-768\\). For example, the denominator exponents for \\(n=-256\\) and \\(n+1=-255\\) are \\(258\\) and \\(249\\). The requested sum is \\(256+512+768=1536\\).</p>
+
+</div>
+
+</div>
+
+</details>

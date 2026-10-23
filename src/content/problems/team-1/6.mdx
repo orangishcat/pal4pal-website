@@ -1,0 +1,30 @@
+---
+title: "Problem 6"
+team: "Team 1"
+topic: "Combinatorics"
+points: 4
+author: "Kennan"
+---
+
+Bob is walking in the cells of a \\(10\times10\\) grid. Meanwhile, Alice is also walking in the cells of the same \\(10\times10\\) grid. Alice starts from the bottom-left corner and Bob starts from the top-right corner. Alice walks up or right every minute randomly and Bob also randomly walks down or left every minute. Let the probability that they will collide be \\(\frac\{p\}\{2^q\}\\) in simplest form and find \\(q\\).
+
+<details class="answer">
+
+<summary>Solution</summary>
+
+<div class="answer-body">
+
+<p><strong>Answer:</strong> \\(16\\)</p>
+
+<div class="solution-text">
+
+<p>They can collide only after both have taken \\(9\\) steps. Matching Alice's first half with Bob's reversed second half gives a complete path across the grid, so there are \\(\binom\{18\}\{9\}\\) ways for a collision.</p>
+<p>Each person has \\(2^9\\) equally likely sequences of direction choices. Therefore</p>
+<p>\\[\Pr(\text\{collision\})=\frac\{\binom\{18\}\{9\}\}\{(2^9)^2\}=\frac\{12155\}\{2^\{16\}\},\\]</p>
+<p>so \\(q=16\\). Alternatively, Kummer's theorem counts two carries in the binary addition \\(9+9\\), giving \\(v_2\!\left(\binom\{18\}\{9\}\right)=2\\) and \\(q=18-2=16\\).</p>
+
+</div>
+
+</div>
+
+</details>

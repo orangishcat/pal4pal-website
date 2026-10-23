@@ -1,11 +1,15 @@
 ---
 import Layout from "../components/Layout.astro";
-import { problemSets } from "../data/practice-problems";
+import { problemNav } from "../utils/problem-nav";
+import { getCollection } from "astro:content";
 import { withBase } from "../utils/url";
 
 const resourceUrl = (filename: string) =>
   withBase(`/resources/problems/${encodeURIComponent(filename)}`);
-const problemSets_25_26 = problemSets.filter((set) => set.year === 2026);
+const docCounts = (await getCollection("problems")).reduce(
+  (counts, doc) => counts.set(doc.data.team, (counts.get(doc.data.team) ?? 0) + 1),
+  new Map<string, number>(),
+);
 
 const precalculusSchedule = [
   {
@@ -123,15 +127,15 @@ const precalculusSchedule = [
         </a>
       </div>
       <ul class="mt-5 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
-        {problemSets_25_26.map((set) => (
+        {problemNav.map((set) => (
           <li class="rounded-xl bg-gray-50 p-4 transition-colors hover:bg-green-50/60">
             <h4 class="text-base font-bold text-text">{set.team}</h4>
             <p class="mt-1 text-xs text-gray-600">
-              By {set.authors} · {set.items.length} problems
+              By {set.authors} · {docCounts.get(set.team)} problems
             </p>
             <div class="mt-3 flex flex-wrap gap-3 text-sm font-semibold text-green-800">
-              <a href={resourceUrl(set.problems)}>Problems ↗</a>
-              <a href={resourceUrl(set.solutions)}>Solutions ↗</a>
+              <a href={resourceUrl(set.problemsPdf)}>Problems ↗</a>
+              <a href={resourceUrl(set.solutionsPdf)}>Solutions ↗</a>
             </div>
           </li>
         ))}
