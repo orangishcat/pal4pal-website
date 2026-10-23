@@ -7,11 +7,11 @@ import { problemHref, setSlug } from "../utils/problem-slugs";
 interface Props {
   currentSetSlug?: string;
   currentProblem?: number;
-  /** Marks the "Index" link as the current page. */
-  isIndex?: boolean;
 }
 
-const { currentSetSlug, currentProblem, isIndex } = Astro.props;
+const { currentSetSlug, currentProblem } = Astro.props;
+
+const isIndex = Astro.url.pathname.replace(/\/+$/, "") === withBase("/resources");
 
 const docs = (await getCollection("problems")).sort((a, b) => {
   const teamOrder = (id: string) => Number(id.match(/team-(\d+)/)?.[1] ?? 0);
@@ -28,12 +28,15 @@ const linkBase =
 ---
 
 <nav aria-label="Problems sidebar" class="text-sm">
+  <h3 class="text-xs font-bold uppercase tracking-wider text-gray-500">
+    Resources
+  </h3>
   <a
     href={withBase("/resources")}
     aria-current={isIndex ? "page" : undefined}
-    class:list={[linkBase, "font-semibold text-text", isIndex && "bg-green-50 text-green-800"]}
+    class:list={[linkBase, isIndex && "bg-green-50 font-semibold text-green-800"]}
   >
-    Index
+    Overview
   </a>
   <h3 class="mt-4 mb-2 text-xs font-bold uppercase tracking-wider text-gray-500">
     2025–26
