@@ -1,0 +1,36 @@
+---
+import Img from "./Img.astro";
+import Button from "./Button.astro";
+import footerLogo from "../assets/logo-white.avif";
+import { withBase } from "../utils/url";
+---
+
+<footer class="px-32 pt-16 pb-32 text-white bg-slate-900">
+  <div class="flex gap-32">
+    <div class="space-y-8">
+      <Img src={footerLogo} class="w-120" />
+      <i>Building solid STEM foundations in middle-to-high schoolers</i>
+    </div>
+    <div class="flex gap-32 text-xl">
+      <div class="space-y-1 *:block *:hover:underline text-gray-200 text-lg">
+        <b class="text-2xl">Resources</b>
+        <a href={withBase("/about")}>About</a>
+        <a href={withBase("/schedule")}>Schedule</a>
+        <a href={withBase("/resources")}>Resources</a>
+      </div>
+
+      <div class="space-y-1 *:block *:hover:underline text-gray-200 text-lg">
+        <b class="text-2xl">Links</b>
+        <a href={withBase("/about")}>Contact</a>
+        <a href={withBase("/signup")}>Sign up</a>
+
+        <a
+          href="https://github.com/orangishcat/pal4pal-website"
+          target="_blank"
+        >
+          Source code
+        </a>
+      </div>
+    </div>
+  </div>
+</footer>
