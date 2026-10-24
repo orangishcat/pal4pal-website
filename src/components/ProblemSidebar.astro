@@ -3,13 +3,15 @@ import { ChevronRight } from "@lucide/astro";
 import { getCollection } from "astro:content";
 import { withBase } from "../utils/url";
 import { problemHref, setSlug } from "../utils/problem-slugs";
+import { slideLessonHref, slideLessonsByYear } from "../utils/slide-lessons";
 
 interface Props {
   currentSetSlug?: string;
   currentProblem?: number;
+  currentLessonSlug?: string;
 }
 
-const { currentSetSlug, currentProblem } = Astro.props;
+const { currentSetSlug, currentProblem, currentLessonSlug } = Astro.props;
 
 const isIndex = Astro.url.pathname.replace(/\/+$/, "") === withBase("/resources");
 
@@ -38,9 +40,41 @@ const linkBase =
   >
     Overview
   </a>
-  <h3 class="mt-4 mb-2 text-xs font-bold uppercase tracking-wider text-gray-500">
-    2025–26
-  </h3>
+  {slideLessonsByYear.map(([year, lessons]) => (
+    <div>
+      <h3 class="mt-4 mb-2 text-xs font-bold uppercase tracking-wider text-gray-500">
+        {year.replace("-", "–")}
+      </h3>
+      <details open={currentLessonSlug !== undefined} class="group/lessons mt-1">
+        <summary class="flex cursor-pointer list-none items-center gap-2 rounded px-2 py-1.5 font-semibold text-text hover:bg-green-50 [&::-webkit-details-marker]:hidden">
+          <ChevronRight
+            size={14}
+            class="shrink-0 transition-transform group-open/lessons:rotate-90"
+          />
+          <span class="truncate">Lesson Slides</span>
+        </summary>
+        <ul class="ml-5 border-l border-gray-200 pl-2">
+          {lessons.map((lesson) => {
+            const active = lesson.slug === currentLessonSlug;
+            return (
+              <li>
+                <a
+                  href={slideLessonHref(lesson)}
+                  aria-current={active ? "page" : undefined}
+                  class:list={[
+                    "block truncate rounded px-2 py-1 text-gray-600 hover:bg-green-50 hover:text-green-800",
+                    active && "bg-green-50 font-semibold text-green-800",
+                  ]}
+                >
+                  {lesson.label}
+                </a>
+              </li>
+            );
+          })}
+        </ul>
+      </details>
+    </div>
+  ))}
   {sets.map(([team, teamDocs]) => (
     <details open={setSlug(team) === currentSetSlug} class="group/set mt-1">
       <summary class="flex cursor-pointer list-none items-center gap-2 rounded px-2 py-1.5 font-semibold text-text hover:bg-green-50 [&::-webkit-details-marker]:hidden">

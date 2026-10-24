@@ -2,6 +2,27 @@
 import Layout from "../components/Layout.astro";
 import ProblemSidebar from "../components/ProblemSidebar.astro";
 import { withBase } from "../utils/url";
+import fs from "node:fs";
+import path from "node:path";
+import { slideLessonHref, slideLessons, slideLessonBySlug } from "../utils/slide-lessons";
+
+if (
+  slideLessons.length !==
+  fs
+    .readdirSync(path.resolve("public/resources/slides"), {
+      recursive: true,
+    })
+    .filter((f) => f.endsWith(".pdf")).length
+) {
+  throw new Error(
+    "Slides in public/resources/slides don't match slideLessons in src/utils/slide-lessons.ts. Update the list there and rebuild.",
+  );
+}
+
+const slides = slideLessons.map((lesson) => ({
+  name: lesson.title,
+  href: slideLessonHref(lesson.slug),
+}));
 ---
 
 <Layout>
@@ -26,6 +47,26 @@ import { withBase } from "../utils/url";
           >
             View problems →
           </a>
+        </div>
+
+        <div class="mt-10">
+          <h2 class="text-2xl font-semibold border-b border-gray-300 pb-4">
+            Slides
+          </h2>
+          <ul class="mt-4 space-y-2">
+            {slides.map((slide) => (
+              <li>
+                <a
+                  href={slide.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="text-green-800 hover:underline"
+                >
+                  {slide.name} (PDF)
+                </a>
+              </li>
+            ))}
+          </ul>
         </div>
       </section>
     </div>
