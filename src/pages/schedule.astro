@@ -7,7 +7,8 @@ import { withBase } from "../utils/url";
 const resourceUrl = (filename: string) =>
   withBase(`/resources/problems/${encodeURIComponent(filename)}`);
 const docCounts = (await getCollection("problems")).reduce(
-  (counts, doc) => counts.set(doc.data.team, (counts.get(doc.data.team) ?? 0) + 1),
+  (counts, doc) =>
+    counts.set(doc.data.team, (counts.get(doc.data.team) ?? 0) + 1),
   new Map<string, number>(),
 );
 
@@ -58,7 +59,7 @@ const precalculusSchedule = [
   </div>
   <section
     aria-labelledby="precalculus-heading"
-    class="mx-auto max-w-6xl px-4 py-10 sm:px-6 sm:py-14"
+    class="mx-auto max-w-6xl px-4 py-10 sm:px-6 sm:py-14 mb-64"
   >
     <div class="mb-7 flex flex-wrap items-end justify-between gap-4">
       <h2
