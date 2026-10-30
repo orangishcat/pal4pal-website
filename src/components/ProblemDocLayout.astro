@@ -34,7 +34,7 @@ const labelFor = (doc: (typeof docs)[number], direction: "prev" | "next") =>
 
 <Layout>
   <div class="border-t border-gray-300">
-    <div class="mx-auto min-h-screen flex gap-10 pl-8 pr-16">
+    <div class="mx-auto min-h-screen flex max-w-7xl gap-10 pl-8 pr-16">
       <ProblemSidebar
         currentSetSlug={setSlug(problem.data.team)}
         currentProblem={numberIn(problem.id)}
