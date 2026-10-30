@@ -34,8 +34,8 @@ const labelFor = (doc: (typeof docs)[number], direction: "prev" | "next") =>
 
 <Layout>
   <div class="border-t border-gray-300">
-    <div class="mx-auto flex min-h-screen max-w-7xl flex-col gap-10 px-5 sm:px-8 lg:flex-row">
-      <aside class="w-full shrink-0 lg:w-64 border-r border-gray-300 p-4 pt-16">
+    <div class="mx-auto min-h-screen flex gap-10 px-5 md:px-24">
+      <aside class="shrink-0 hidden lg:block w-64 border-r border-gray-300 p-4 pt-16">
         <ProblemSidebar
           currentSetSlug={setSlug(problem.data.team)}
           currentProblem={numberIn(problem.id)}
@@ -46,23 +46,25 @@ const labelFor = (doc: (typeof docs)[number], direction: "prev" | "next") =>
         aria-labelledby="problem-heading"
         class="min-w-0 flex-1 py-16"
       >
-        <header class="mb-8 border-b border-green-800/20 pb-6">
-          <p class="text-sm font-semibold uppercase tracking-wider text-green-800">
-            {problem.data.team} Problem Set
-          </p>
-          <div class="mt-3 flex flex-wrap items-center gap-x-3 gap-y-2">
-            <h1
-              id="problem-heading"
-              class="text-3xl font-bold tracking-tight text-text sm:text-4xl"
-            >
-              {problem.data.title}
-            </h1>
-            <span class="rounded-full bg-gray-100 px-3 py-1 text-xs font-medium text-gray-600">
-              {problem.data.topic}
-            </span>
-            <span class="text-xs text-gray-500">
-              {problem.data.points} points · {problem.data.author}
-            </span>
+        <header class="mb-8 border-b border-green-800/20 pb-4">
+          <div class="mt-3 flex flex-col gap-4">
+            <div class="flex justify-between place-items-end">
+              <h1
+                id="problem-heading"
+                class="text-3xl font-bold tracking-tight text-text sm:text-4xl"
+              >
+                {problem.data.title}
+              </h1>
+
+              <div class="flex gap-4 place-items-center">
+                <span class="rounded-full bg-gray-100 px-3 py-1 text-xs font-medium text-gray-600">
+                  Problem credits: {problem.data.author}
+                </span>
+                <span class="rounded-full bg-gray-100 px-3 py-1 text-xs font-medium text-gray-600">
+                  Skill: {problem.data.topic}
+                </span>
+              </div>
+            </div>
           </div>
         </header>
         <article>

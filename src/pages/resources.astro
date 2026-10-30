@@ -4,7 +4,11 @@ import ProblemSidebar from "../components/ProblemSidebar.astro";
 import { withBase } from "../utils/url";
 import fs from "node:fs";
 import path from "node:path";
-import { slideLessonHref, slideLessons, slideLessonBySlug } from "../utils/slide-lessons";
+import {
+  slideLessonHref,
+  slideLessons,
+  slideLessonBySlug,
+} from "../utils/slide-lessons";
 
 if (
   slideLessons.length !==
@@ -47,26 +51,6 @@ const slides = slideLessons.map((lesson) => ({
           >
             View problems →
           </a>
-        </div>
-
-        <div class="mt-10">
-          <h2 class="text-2xl font-semibold border-b border-gray-300 pb-4">
-            Slides
-          </h2>
-          <ul class="mt-4 space-y-2">
-            {slides.map((slide) => (
-              <li>
-                <a
-                  href={slide.href}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  class="text-green-800 hover:underline"
-                >
-                  {slide.name} (PDF)
-                </a>
-              </li>
-            ))}
-          </ul>
         </div>
       </section>
     </div>

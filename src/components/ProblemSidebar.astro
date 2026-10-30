@@ -13,7 +13,8 @@ interface Props {
 
 const { currentSetSlug, currentProblem, currentLessonSlug } = Astro.props;
 
-const isIndex = Astro.url.pathname.replace(/\/+$/, "") === withBase("/resources");
+const isIndex =
+  Astro.url.pathname.replace(/\/+$/, "") === withBase("/resources");
 
 const docs = (await getCollection("problems")).sort((a, b) => {
   const teamOrder = (id: string) => Number(id.match(/team-(\d+)/)?.[1] ?? 0);
@@ -22,11 +23,16 @@ const docs = (await getCollection("problems")).sort((a, b) => {
 });
 
 const sets = [
-  ...new Map(docs.map((doc) => [doc.data.team, docs.filter((d) => d.data.team === doc.data.team)])).entries(),
+  ...new Map(
+    docs.map((doc) => [
+      doc.data.team,
+      docs.filter((d) => d.data.team === doc.data.team),
+    ]),
+  ).entries(),
 ];
 
 const linkBase =
-  "rounded px-2 py-1.5 inline-block text-gray-600 hover:bg-green-50 hover:text-green-800";
+  "rounded px-2 py-1.5 inline-block text-gray-600 hover:bg-green-50 hover:text-green-800 w-full";
 ---
 
 <nav aria-label="Problems sidebar" class="text-sm">
@@ -36,7 +42,10 @@ const linkBase =
   <a
     href={withBase("/resources")}
     aria-current={isIndex ? "page" : undefined}
-    class:list={[linkBase, isIndex && "bg-green-50 font-semibold text-green-800"]}
+    class:list={[
+      linkBase,
+      isIndex && "bg-green-50 font-semibold text-green-800",
+    ]}
   >
     Overview
   </a>
@@ -45,7 +54,10 @@ const linkBase =
       <h3 class="mt-4 mb-2 text-xs font-bold uppercase tracking-wider text-gray-500">
         {year.replace("-", "–")}
       </h3>
-      <details open={currentLessonSlug !== undefined} class="group/lessons mt-1">
+      <details
+        open={currentLessonSlug !== undefined}
+        class="group/lessons mt-1"
+      >
         <summary class="flex cursor-pointer list-none items-center gap-2 rounded px-2 py-1.5 font-semibold text-text hover:bg-green-50 [&::-webkit-details-marker]:hidden">
           <ChevronRight
             size={14}
@@ -86,7 +98,8 @@ const linkBase =
       </summary>
       <ul class="ml-5 border-l border-gray-200 pl-2">
         {teamDocs.map((doc, index) => {
-          const active = setSlug(team) === currentSetSlug && index + 1 === currentProblem;
+          const active =
+            setSlug(team) === currentSetSlug && index + 1 === currentProblem;
           return (
             <li>
               <a
