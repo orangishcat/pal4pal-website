@@ -1,2 +1,5 @@
 # pal4pal-website
-website for my friend's nonprofit
+
+Website for the Pal4Pal Education Outreach nonprofit.
+
+License: ARR
