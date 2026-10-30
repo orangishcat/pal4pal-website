@@ -1,0 +1,72 @@
+---
+// Collapsible sidebar section built on the native <details>/<summary>
+// element (no client JS). Acts as a dropdown containing navigation links
+// and/or nested SidebarDropdowns; for a plain navigation item (no
+// children), use SidebarLink instead.
+import { ChevronRight } from "@lucide/astro";
+
+interface Item {
+  label: string;
+  href: string;
+  active?: boolean;
+  /** Optional muted annotation appended after the label, e.g. a topic. */
+  note?: string;
+}
+
+interface Props {
+  /** Label shown on the summary row. */
+  label: string;
+  /** Render the dropdown expanded on first load. */
+  open?: boolean;
+  items: Item[];
+}
+
+const { label, open = false, items } = Astro.props;
+---
+
+<details open={open}>
+  <summary class="flex cursor-pointer list-none items-center gap-2 rounded px-2 py-1.5 text-lg text-gray-600 hover:bg-green-50 [&::-webkit-details-marker]:hidden">
+    <ChevronRight size={14} class="shrink-0 transition-transform" />
+    <span class="truncate">{label}</span>
+  </summary>
+  <slot />
+  {items.length > 0 && (
+    <ul class="ml-5 border-l border-gray-200 pl-2">
+      {items.map((item) => (
+        <li>
+          <a
+            href={item.href}
+            aria-current={item.active ? "page" : undefined}
+            class:list={[
+              "block truncate rounded px-2 py-1 text-base text-gray-600 hover:bg-green-50 hover:text-green-800",
+              item.active && "bg-green-50 font-semibold text-green-800",
+            ]}
+          >
+            {item.label}
+            {item.note && (
+              <span class="text-xs text-gray-400"> · {item.note}</span>
+            )}
+          </a>
+        </li>
+      ))}
+    </ul>
+  )}
+</details>
+
+<style>
+  /* Rotate only this dropdown's own chevron. The direct-child combinator
+     is required: nested <details> elements must not inherit each other's
+     open state. */
+  details > summary :global(svg) {
+    transform: rotate(0deg);
+  }
+  details[open] > summary :global(svg) {
+    transform: rotate(90deg);
+  }
+
+  /* Indent nested dropdowns relative to their parent; the direct-child
+     rule compounds naturally at each nesting depth. */
+  details > :where(details) {
+    margin-left: 1.25rem;
+  }
+</style>

@@ -1,0 +1,22 @@
+---
+// Single sidebar navigation item. Renders as a full-width link to the
+// given href, with the shared hover/active treatment used across the
+// sidebar. Content is provided via slot (so footnotes can be appended).
+interface Props {
+  href: string;
+  active?: boolean;
+}
+
+const { href, active = false } = Astro.props;
+---
+
+<a
+  href={href}
+  aria-current={active ? "page" : undefined}
+  class:list={[
+    "block w-full truncate rounded px-2 py-1.5 text-gray-600 hover:bg-green-50 hover:text-green-800",
+    active && "bg-green-50 font-semibold text-green-800",
+  ]}
+>
+  <slot />
+</a>

@@ -34,13 +34,11 @@ const labelFor = (doc: (typeof docs)[number], direction: "prev" | "next") =>
 
 <Layout>
   <div class="border-t border-gray-300">
-    <div class="mx-auto min-h-screen flex gap-10 px-5 md:px-24">
-      <aside class="shrink-0 hidden lg:block w-64 border-r border-gray-300 p-4 pt-16">
-        <ProblemSidebar
-          currentSetSlug={setSlug(problem.data.team)}
-          currentProblem={numberIn(problem.id)}
-        />
-      </aside>
+    <div class="mx-auto min-h-screen flex gap-10 pl-8 pr-16">
+      <ProblemSidebar
+        currentSetSlug={setSlug(problem.data.team)}
+        currentProblem={numberIn(problem.id)}
+      />
       <section
         id="practice-list"
         aria-labelledby="problem-heading"

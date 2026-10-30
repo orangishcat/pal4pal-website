@@ -1,6 +1,6 @@
 ---
-import { ChevronRight } from "@lucide/astro";
 import { getCollection } from "astro:content";
+import SidebarDropdown from "./sidebar/SidebarDropdown.astro";
 import { withBase } from "../utils/url";
 import { problemHref, setSlug } from "../utils/problem-slugs";
 import { slideLessonHref, slideLessonsByYear } from "../utils/slide-lessons";
@@ -30,93 +30,58 @@ const sets = [
     ]),
   ).entries(),
 ];
-
-const linkBase =
-  "rounded px-2 py-1.5 inline-block text-gray-600 hover:bg-green-50 hover:text-green-800 w-full";
 ---
 
-<nav aria-label="Problems sidebar" class="text-sm">
-  <h3 class="text-xs font-bold uppercase tracking-wider text-gray-500">
-    Resources
-  </h3>
-  <a
-    href={withBase("/resources")}
-    aria-current={isIndex ? "page" : undefined}
-    class:list={[
-      linkBase,
-      isIndex && "bg-green-50 font-semibold text-green-800",
-    ]}
-  >
-    Overview
-  </a>
-  {slideLessonsByYear.map(([year, lessons]) => (
-    <div>
-      <h3 class="mt-4 mb-2 text-xs font-bold uppercase tracking-wider text-gray-500">
-        {year.replace("-", "–")}
-      </h3>
-      <details
-        open={currentLessonSlug !== undefined}
-        class="group/lessons mt-1"
+<aside class="shrink-0 hidden lg:block w-64 border-r border-gray-300 pt-16">
+  <nav aria-label="Problems sidebar" class="text-lg">
+    <SidebarDropdown
+      label="Resources"
+      open={isIndex}
+      items={[
+        {
+          label: "Overview",
+          href: withBase("/resources"),
+          active: isIndex,
+        },
+      ]}
+    />
+
+    {slideLessonsByYear.map(([year, lessons]) => (
+      <SidebarDropdown
+        label={year.replace("-", "–")}
+        open={currentLessonSlug !== undefined || currentSetSlug !== undefined}
+        items={[]}
       >
-        <summary class="flex cursor-pointer list-none items-center gap-2 rounded px-2 py-1.5 font-semibold text-text hover:bg-green-50 [&::-webkit-details-marker]:hidden">
-          <ChevronRight
-            size={14}
-            class="shrink-0 transition-transform group-open/lessons:rotate-90"
-          />
-          <span class="truncate">Lesson Slides</span>
-        </summary>
-        <ul class="ml-5 border-l border-gray-200 pl-2">
-          {lessons.map((lesson) => {
-            const active = lesson.slug === currentLessonSlug;
-            return (
-              <li>
-                <a
-                  href={slideLessonHref(lesson)}
-                  aria-current={active ? "page" : undefined}
-                  class:list={[
-                    "block truncate rounded px-2 py-1 text-gray-600 hover:bg-green-50 hover:text-green-800",
-                    active && "bg-green-50 font-semibold text-green-800",
-                  ]}
-                >
-                  {lesson.label}
-                </a>
-              </li>
-            );
-          })}
-        </ul>
-      </details>
-    </div>
-  ))}
-  {sets.map(([team, teamDocs]) => (
-    <details open={setSlug(team) === currentSetSlug} class="group/set mt-1">
-      <summary class="flex cursor-pointer list-none items-center gap-2 rounded px-2 py-1.5 font-semibold text-text hover:bg-green-50 [&::-webkit-details-marker]:hidden">
-        <ChevronRight
-          size={14}
-          class="shrink-0 transition-transform group-open/set:rotate-90"
+        <SidebarDropdown
+          label="Slides"
+          open={currentLessonSlug !== undefined}
+          items={lessons.map((lesson) => ({
+            label: lesson.label,
+            href: slideLessonHref(lesson),
+            active: lesson.slug === currentLessonSlug,
+          }))}
         />
-        <span class="truncate">{team} Set</span>
-      </summary>
-      <ul class="ml-5 border-l border-gray-200 pl-2">
-        {teamDocs.map((doc, index) => {
-          const active =
-            setSlug(team) === currentSetSlug && index + 1 === currentProblem;
-          return (
-            <li>
-              <a
-                href={problemHref(team, index)}
-                aria-current={active ? "page" : undefined}
-                class:list={[
-                  "block truncate rounded px-2 py-1 text-gray-600 hover:bg-green-50 hover:text-green-800",
-                  active && "bg-green-50 font-semibold text-green-800",
-                ]}
-              >
-                Problem {index + 1}
-                <span class="text-xs text-gray-400"> · {doc.data.topic}</span>
-              </a>
-            </li>
-          );
-        })}
-      </ul>
-    </details>
-  ))}
-</nav>
+        <SidebarDropdown
+          label="Problems"
+          open={currentSetSlug !== undefined}
+          items={[]}
+        >
+          {sets.map(([team, teamDocs]) => (
+            <SidebarDropdown
+              label={`${team} Set`}
+              open={setSlug(team) === currentSetSlug}
+              items={teamDocs.map((doc, index) => ({
+                label: `Problem ${index + 1}`,
+                href: problemHref(team, index),
+                active:
+                  setSlug(team) === currentSetSlug &&
+                  index + 1 === currentProblem,
+                note: doc.data.topic,
+              }))}
+            />
+          ))}
+        </SidebarDropdown>
+      </SidebarDropdown>
+    ))}
+  </nav>
+</aside>
