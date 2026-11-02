@@ -1,14 +1,9 @@
 ---
-import Layout from "../components/Layout.astro";
-import ProblemSidebar from "../components/ProblemSidebar.astro";
+import ResourcesLayout from "../components/ResourcesLayout.astro";
 import { withBase } from "../utils/url";
+import { slideLessons } from "../utils/slide-lessons";
 import fs from "node:fs";
 import path from "node:path";
-import {
-  slideLessonHref,
-  slideLessons,
-  slideLessonBySlug,
-} from "../utils/slide-lessons";
 
 if (
   slideLessons.length !==
@@ -22,35 +17,22 @@ if (
     "Slides in public/resources/slides don't match slideLessons in src/utils/slide-lessons.ts. Update the list there and rebuild.",
   );
 }
-
-const slides = slideLessons.map((lesson) => ({
-  name: lesson.title,
-  href: slideLessonHref(lesson.slug),
-}));
 ---
 
-<Layout>
-  <div class="border-t border-gray-300">
-    <div class="mx-auto flex min-h-screen max-w-7xl gap-10 px-8 pr-16">
-      <ProblemSidebar />
-
-      <section class="min-w-0 flex-1 px-4 py-16">
-        <div class="border-b border-gray-300 space-y-4 h-1/2">
-          <h1 class="text-4xl font-bold border-b border-gray-300 pb-4">
-            Resources
-          </h1>
-          <p>View past problems created by the Pal4Pal team.</p>
-        </div>
-
-        <div class="text-right mt-4">
-          <a
-            href={withBase("/resources/problem/team-1/1")}
-            class="text-green-800 hover:underline"
-          >
-            View problems →
-          </a>
-        </div>
-      </section>
-    </div>
+<ResourcesLayout>
+  <div class="border-b border-gray-300 space-y-4 h-1/2">
+    <h1 class="text-4xl font-bold border-b border-gray-300 pb-4">
+      Resources
+    </h1>
+    <p>View past problems created by the Pal4Pal team.</p>
   </div>
-</Layout>
+
+  <div class="text-right mt-4">
+    <a
+      href={withBase("/resources/problem/team-1/1")}
+      class="text-green-800 hover:underline"
+    >
+      View problems →
+    </a>
+  </div>
+</ResourcesLayout>

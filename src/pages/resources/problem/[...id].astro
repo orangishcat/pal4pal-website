@@ -1,6 +1,8 @@
 ---
-import ProblemDocLayout from "../../../components/ProblemDocLayout.astro";
-import { getCollection } from "astro:content";
+import ResourcesLayout from "../../../components/ResourcesLayout.astro";
+import ProblemDiagram from "../../../components/ProblemDiagram.astro";
+import { getCollection, render } from "astro:content";
+import { problemHref, setSlug } from "../../../utils/problem-slugs";
 
 export async function getStaticPaths() {
   const docs = await getCollection("problems");
@@ -11,6 +13,125 @@ export async function getStaticPaths() {
 }
 
 const { problem } = Astro.props;
+const { Content } = await render(problem);
+
+const docs = (await getCollection("problems")).sort((a, b) => {
+  const teamOrder = (id: string) => Number(id.match(/team-(\d+)/)?.[1] ?? 0);
+  const n = (id: string) => Number(id.match(/\/(\d+)$/)?.[1] ?? 0);
+  return teamOrder(a.id) - teamOrder(b.id) || n(a.id) - n(b.id);
+});
+const numberIn = (id: string) => Number(id.split("/")[1]);
+
+const currentIndex = docs.findIndex((doc) => doc.id === problem.id);
+const prev = currentIndex > 0 ? docs[currentIndex - 1] : undefined;
+const next =
+  currentIndex < docs.length - 1 ? docs[currentIndex + 1] : undefined;
+const hrefFor = (doc: (typeof docs)[number]) =>
+  problemHref(doc.data.team, numberIn(doc.id) - 1);
+const labelFor = (doc: (typeof docs)[number], direction: "prev" | "next") =>
+  doc.data.team === problem.data.team
+    ? `Problem ${numberIn(doc.id)}`
+    : `${direction === "prev" ? "Previous" : "Next"} Problem (${doc.data.team})`;
 ---
 
-<ProblemDocLayout problem={problem} />
+<ResourcesLayout
+  currentSetSlug={setSlug(problem.data.team)}
+  currentProblem={numberIn(problem.id)}
+  sectionClass="px-4"
+>
+  <section id="practice-list" aria-labelledby="problem-heading">
+    <header class="mb-8 border-b border-green-800/20 pb-4">
+      <div class="mt-3 flex flex-col gap-4">
+        <div class="flex justify-between place-items-end">
+          <h1
+            id="problem-heading"
+            class="text-3xl font-bold tracking-tight text-text sm:text-4xl"
+          >
+            {problem.data.title}
+          </h1>
+
+          <div class="flex gap-4 place-items-center">
+            <span class="rounded-full bg-gray-100 px-3 py-1 text-xs font-medium text-gray-600">
+              Problem credits: {problem.data.author}
+            </span>
+            <span class="rounded-full bg-gray-100 px-3 py-1 text-xs font-medium text-gray-600">
+              Skill: {problem.data.topic}
+            </span>
+          </div>
+        </div>
+      </div>
+    </header>
+    <article>
+      <div class="problem-text text-base leading-8 text-gray-800 sm:text-lg">
+        <Content />
+      </div>
+      {problem.data.diagram && (
+        <ProblemDiagram kind={problem.data.diagram} />
+      )}
+    </article>
+    <nav
+      aria-label="Problem pagination"
+      class="mt-12 flex flex-wrap items-end justify-between gap-4 border-t border-gray-200 pt-6 text-sm"
+    >
+      <div>
+        {prev && (
+          <a href={hrefFor(prev)} class="text-green-800 hover:underline">
+            ← {labelFor(prev, "prev")}
+          </a>
+        )}
+      </div>
+      <div class="text-right">
+        {next && (
+          <a href={hrefFor(next)} class="text-green-800 hover:underline">
+            {labelFor(next, "next")} →
+          </a>
+        )}
+      </div>
+    </nav>
+  </section>
+
+  <style is:global>
+    @reference "../../../styles/global.css";
+
+    /* Native MDX `<details class="answer">` solution dropdown, styled to match
+       the original ProblemPage solution block. */
+    #practice-list details.answer {
+      @apply mt-5 rounded-lg border border-green-800/20 bg-green-50;
+    }
+    #practice-list details.answer > summary {
+      @apply cursor-pointer rounded-lg px-4 py-3 text-sm font-semibold text-green-800;
+    }
+    #practice-list details.answer .answer-body {
+      @apply px-4 pb-5 text-gray-800;
+    }
+    #practice-list details.answer .answer-body > strong,
+    #practice-list details.answer .answer-body p > strong {
+      @apply text-sm;
+    }
+    #practice-list details.answer .solution-text {
+      @apply mt-4 border-t border-green-800/15 pt-4 text-base leading-7;
+    }
+    #practice-list details.answer .solution-text p {
+      @apply mb-3 last:mb-0;
+    }
+  </style>
+
+  <style>
+    #practice-list :global(mjx-container[jax="SVG"] > svg) {
+      display: inline-block;
+    }
+  </style>
+
+  <script is:inline>
+    window.MathJax = {
+      tex: { inlineMath: [["\\(", "\\)"]], displayMath: [["\\[", "\\]"]] },
+      svg: { fontCache: "global" },
+    };
+  </script>
+  <!-- https://docs.mathjax.org/en/stable/web/configuration.html -->
+  <script
+    is:inline
+    defer
+    src="https://cdn.jsdelivr.net/npm/mathjax@4.1.0/tex-svg.js"
+  ></script>
+</ResourcesLayout>

@@ -1,0 +1,33 @@
+---
+import Layout from "./Layout.astro";
+import ProblemSidebar from "./ProblemSidebar.astro";
+
+interface Props {
+  currentSetSlug?: string;
+  currentProblem?: number;
+  currentLessonSlug?: string;
+  /** Extra Tailwind classes appended to the content section. */
+  sectionClass?: string;
+}
+
+const { currentSetSlug, currentProblem, currentLessonSlug, sectionClass = "" } =
+  Astro.props;
+---
+
+<Layout>
+  <div class="border-t border-gray-300">
+    <div
+      class="mx-auto flex min-h-screen max-w-7xl flex-col gap-10 pl-8 pr-16 lg:flex-row"
+    >
+      <ProblemSidebar
+        {currentSetSlug}
+        {currentProblem}
+        {currentLessonSlug}
+      />
+
+      <section class={`min-w-0 flex-1 py-16 pl-4 ${sectionClass}`}>
+        <slot />
+      </section>
+    </div>
+  </div>
+</Layout>
