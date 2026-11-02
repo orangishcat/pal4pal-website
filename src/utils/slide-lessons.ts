@@ -16,14 +16,14 @@ export const slideLessons: SlideLesson[] = [
   {
     slug: "functions-review-session-1",
     year: "2025-26",
-    label: "Session 1",
+    label: "Week 1 Session 1",
     title: "Functions Review and Intro to Trig: Session 1",
     authors: "Pal4Pal Team",
   },
   {
     slug: "functions-review-session-2",
     year: "2025-26",
-    label: "Session 2",
+    label: "Week 1 Session 2",
     title: "Functions Review and Intro to Trig: Session 2",
     authors: "Pal4Pal Team",
   },
