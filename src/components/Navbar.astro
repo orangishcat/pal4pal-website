@@ -1,26 +1,32 @@
 ---
 import Img from "./Img.astro";
 import Button from "./Button.astro";
+import { Menu } from "@lucide/astro";
 import logo from "../assets/logo.avif";
 import { withBase } from "../utils/url";
 ---
 
-<nav class="grid grid-cols-[1fr_auto_1fr] w-full items-center px-6 py-4 [&_a]:hover:underline [&_a]:hover:text-gray-600">
-  <a href={withBase("/")}>
-    <Img src={logo} width={340} />
+<nav class="flex flex-wrap items-center justify-between gap-x-10 gap-y-3 w-full px-6 py-4 [&_a]:hover:underline [&_a]:hover:text-gray-600">
+  <button
+    id="problem-sidebar-open"
+    type="button"
+    aria-controls="problem-sidebar"
+    aria-expanded="false"
+    hidden
+    class="lg:hidden inline-flex cursor-pointer items-center justify-center rounded border border-gray-300 p-1.5 text-gray-700 hover:bg-gray-50 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-green-800"
+    aria-label="Open navigation"
+  >
+    <Menu size={20} />
+  </button>
+  <a href={withBase("/")} class="max-lg:mx-auto">
+    <Img src={logo} width={340} class="h-auto w-64 max-sm:w-44" />
   </a>
-  <div class="pl-6 grid grid-cols-[1fr_auto_1fr] justify-center gap-12">
-    <a href={withBase("/about")} class="text-right">
-      About
-    </a>
-    <a href={withBase("/schedule")} class="text-center">
-      Schedule
-    </a>
-    <a href={withBase("/resources")} class="text-left">
-      Resources
-    </a>
+  <div class="flex items-center justify-center gap-6 sm:gap-12">
+    <a href={withBase("/about")}>About</a>
+    <a href={withBase("/schedule")}>Schedule</a>
+    <a href={withBase("/resources")}>Resources</a>
   </div>
-  <div class="flex items-center justify-self-end gap-8">
+  <div class="flex items-center gap-4 sm:gap-8">
     <a href={withBase("/contact")}>Contact</a>
     <Button href={withBase("/signup")}>Sign Up</Button>
   </div>

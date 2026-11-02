@@ -5,13 +5,13 @@ import footerLogo from "../assets/logo-white.avif";
 import { withBase } from "../utils/url";
 ---
 
-<footer class="px-32 pt-16 pb-32 text-white bg-slate-900">
-  <div class="flex gap-32">
+<footer class="px-6 md:px-32 pt-16 pb-32 text-white bg-slate-900">
+  <div class="flex flex-col lg:flex-row gap-12 lg:gap-32">
     <div class="space-y-8">
-      <Img src={footerLogo} class="w-120" />
+      <Img src={footerLogo} class="w-64 md:w-120 max-w-full" />
       <i>Building solid STEM foundations in middle-to-high schoolers</i>
     </div>
-    <div class="flex gap-32 text-xl">
+    <div class="flex gap-16 md:gap-32 text-xl">
       <div class="space-y-1 *:block *:hover:underline text-gray-200 text-lg">
         <b class="text-2xl">Resources</b>
         <a href={withBase("/about")}>About</a>

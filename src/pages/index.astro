@@ -13,33 +13,36 @@ import { withBase } from "../utils/url";
 
 <Layout>
   <div
-    class="*:flex *:justify-center *:place-items-center *:h-150 *:px-8 *:odd:bg-gray-50
-    [&>div>div.grid]:grid [&>div>div.grid]:grid-cols-2 [&>div>div.grid]:px-16 [&>div>div.grid]:w-full [&>div>div.grid]:max-w-7xl
+    class="*:flex *:justify-center *:place-items-center *:min-h-150 *:h-auto *:px-8 *:odd:bg-gray-50
+    [&>div>div.grid]:grid [&>div>div.grid]:grid-cols-1 [&>div>div.grid]:px-6 [&>div>div.grid]:w-full [&>div>div.grid]:max-w-7xl
+    md:[&>div>div.grid]:grid-cols-2 md:[&>div>div.grid]:px-16
     [&>div>div.grid]:gap-12 [&>div>div.grid]:items-center
-    [&>div>div.grid>*:nth-child(odd)]:justify-self-start [&>div>div.grid>*:nth-child(even)]:justify-self-end"
+    [&>div>div.grid>*]:justify-self-center md:[&>div>div.grid>*:nth-child(odd)]:justify-self-start md:[&>div>div.grid>*:nth-child(even)]:justify-self-end"
   >
-    <div class="bg-slate-800! h-180!">
+    <div class="bg-slate-800! h-auto! py-24! lg:h-180! lg:py-0!">
       <div class="grid">
         <div class="my-auto space-y-6">
-          <h1 class="text-7xl text-white font-bold">Empowering the Youth</h1>
-          <p class="text-2xl text-gray-400 max-w-2xl">
+          <h1 class="text-4xl text-white font-bold sm:text-5xl md:text-7xl">
+            Empowering the Youth
+          </h1>
+          <p class="text-xl text-gray-400 max-w-2xl md:text-2xl">
             Educational math workshops to build solid STEM foundations in
             middle-to-high schoolers.
           </p>
         </div>
-        <div class="max-w-lg">
-          <Img src={homepage} />
+        <div class="max-w-lg w-full">
+          <Img src={homepage} class="w-full max-w-lg h-auto" />
         </div>
       </div>
     </div>
-    <div class="h-auto! min-h-185">
+    <div class="h-auto!">
       <div class="w-full max-w-5xl py-16">
         <div class="flex flex-col place-items-center justify-center gap-4 p-6">
-          <h2 class="text-4xl text-slate-900 font-bold text-center">
+          <h2 class="text-3xl text-slate-900 font-bold text-center md:text-4xl">
             Driven by student volunteers
           </h2>
           <ImageCarousel slides={volunteerSlides} label="Student volunteers" />
-          <div class="flex gap-4">
+          <div class="flex flex-wrap justify-center gap-4">
             <Button theme="primary" href={withBase("/about")}>
               About us
             </Button>
@@ -53,7 +56,7 @@ import { withBase } from "../utils/url";
     <div>
       <div class="grid">
         <div class="flex flex-col gap-4 p-6">
-          <h2 class="text-4xl font-bold">
+          <h2 class="text-3xl font-bold md:text-4xl">
             AMC and AIME-level practice problems
           </h2>
           <p class="text-xl text-gray-500 max-w-2xl">
@@ -65,16 +68,16 @@ import { withBase } from "../utils/url";
           </Button>
         </div>
         <div>
-          <Img src={aime} />
+          <Img src={aime} class="w-full max-w-2xl h-auto" />
         </div>
       </div>
     </div>
-    <div class="h-100! flex flex-col place-items-center">
+    <div class="h-auto! flex flex-col place-items-center py-20 lg:h-100! lg:py-0!">
       <div class="my-auto space-y-8 max-w-xl *:text-center">
-        <h1 class="text-5xl font-semibold">
+        <h1 class="text-3xl font-semibold md:text-5xl">
           Building strong STEM foundations in students
         </h1>
-        <div class="flex justify-center gap-4 mt-1 text-xl">
+        <div class="flex flex-wrap justify-center gap-4 mt-1 text-xl">
           <Button theme="primary" href={withBase("/signup")}>
             Sign up
           </Button>

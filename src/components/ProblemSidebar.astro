@@ -1,9 +1,12 @@
 ---
 import { getCollection } from "astro:content";
 import SidebarDropdown from "./sidebar/SidebarDropdown.astro";
+import { X } from "@lucide/astro";
 import { withBase } from "../utils/url";
 import { problemHref, setSlug } from "../utils/problem-slugs";
 import { slideLessonHref, slideLessonsByYear } from "../utils/slide-lessons";
+import logo from "../assets/logo.avif";
+import Img from "./Img.astro";
 
 interface Props {
   currentSetSlug?: string;
@@ -32,8 +35,19 @@ const sets = [
 ];
 ---
 
-<aside class="shrink-0 hidden lg:block w-76 border-r border-gray-300 pt-16">
+<div
+  id="problem-sidebar-backdrop"
+  class="hidden fixed inset-0 z-30 bg-black/40"
+  aria-hidden="true"
+></div>
+
+<aside
+  id="problem-sidebar"
+  class="fixed inset-y-0 left-0 z-40 w-72 -translate-x-full overflow-y-auto bg-white border-r border-gray-300 pt-4 pb-8 transition-transform duration-200
+  lg:static lg:z-auto lg:shrink-0 lg:block lg:w-76 lg:translate-x-0 lg:pt-16"
+>
   <nav aria-label="Problems sidebar" class="text-lg">
+    <Img src={logo} class="lg:hidden pl-2 pr-12 mb-4" />
     <SidebarDropdown
       label="Resources"
       open={isIndex}
@@ -84,4 +98,51 @@ const sets = [
       </SidebarDropdown>
     ))}
   </nav>
+
+  <button
+    id="problem-sidebar-close"
+    type="button"
+    aria-controls="problem-sidebar"
+    aria-expanded="true"
+    class="lg:hidden absolute top-3 right-3 inline-flex cursor-pointer items-center justify-center rounded p-1.5 text-gray-700 hover:bg-gray-50 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-green-800"
+    aria-label="Close navigation"
+  >
+    <X size={20} />
+  </button>
 </aside>
+
+<script>
+  const sidebar = document.getElementById("problem-sidebar");
+  const divider = document.getElementById("problem-sidebar-backdrop");
+  const openButton = document.getElementById("problem-sidebar-open");
+  const closeButton = document.getElementById("problem-sidebar-close");
+
+  if (sidebar && divider && openButton && closeButton) {
+    // A page rendering the sidebar opts in to the mobile menu: reveal the
+    // Navbar's hidden menu button (it has no built-in page-path condition).
+    openButton.removeAttribute("hidden");
+
+    const setOpen = (open: boolean) => {
+      sidebar.classList.toggle("translate-x-0", open);
+      sidebar.classList.toggle("-translate-x-full", !open);
+      divider.classList.toggle("hidden", !open);
+      document.body.classList.toggle("overflow-hidden", open);
+      openButton.setAttribute("aria-expanded", String(open));
+      closeButton.setAttribute("aria-expanded", String(open));
+    };
+
+    openButton.addEventListener("click", () => setOpen(true));
+    closeButton.addEventListener("click", () => setOpen(false));
+    divider.addEventListener("click", () => setOpen(false));
+    document.addEventListener("keydown", (event) => {
+      if (event.key === "Escape") setOpen(false);
+    });
+
+    // Close the drawer whenever a navigation link inside it is used.
+    sidebar.addEventListener("click", (event) => {
+      if (event.target instanceof Element && event.target.closest("a")) {
+        setOpen(false);
+      }
+    });
+  }
+</script>
