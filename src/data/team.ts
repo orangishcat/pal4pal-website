@@ -31,7 +31,7 @@ const gradeLevels: Record<string, string> = {
   "Justin Kim": "Freshman",
   "Vincent Huang": "8th Grade",
   "Kennan Suen": "7th Grade",
-  "Jonathan Yu": "8th Grade",
+  "Jonathan Yu": "7th Grade",
 };
 
 export const volunteerSlides = [
