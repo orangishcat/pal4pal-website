@@ -17,6 +17,10 @@ iframe {
   @apply h-[60vh] w-full;
 }
 
+.title-wrapper img {
+  height: 1.5rem;
+}
+
 :root {
   --sl-content-width: 65rem;
 }

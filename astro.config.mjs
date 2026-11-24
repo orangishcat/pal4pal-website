@@ -24,6 +24,11 @@ export default defineConfig({
   integrations: [
     starlight({
       title: "Pal4Pal Education",
+      logo: {
+        src: "./src/assets/logo.avif",
+        alt: "Pal4Pal Education",
+        replacesTitle: true,
+      },
       customCss: ["./src/styles/resources.css", "katex/dist/katex.min.css"],
       tableOfContents: false,
       sidebar: [
