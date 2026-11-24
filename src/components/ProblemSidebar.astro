@@ -16,7 +16,7 @@ interface Props {
 const { currentSetSlug, currentProblem, currentLessonSlug } = Astro.props;
 
 const isIndex =
-  Astro.url.pathname.replace(/\/+$/, "") === withBase("/resources/overview");
+  Astro.url.pathname.replace(/\/+$/, "") === withBase("/resources");
 
 const docs = await getCollection("docs");
 
@@ -79,7 +79,7 @@ const slidesByYear = [
       items={[
         {
           label: "Overview",
-          href: withBase("/resources/overview"),
+          href: withBase("/resources"),
           active: isIndex,
         },
       ]}
