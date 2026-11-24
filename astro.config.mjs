@@ -8,24 +8,6 @@ import { unified } from "@astrojs/markdown-remark";
 import remarkMath from "remark-math";
 import rehypeKatex from "rehype-katex";
 
-const videoGroup = (program) => ({
-  label: program,
-  collapsed: true,
-  items: [
-    {
-      label: "Session videos",
-      collapsed: false,
-      items: [
-        {
-          autogenerate: {
-            directory: `resources/${program}/Session videos`,
-          },
-        },
-      ],
-    },
-  ],
-});
-
 // https://astro.build/config
 export default defineConfig({
   vite: {
@@ -49,6 +31,14 @@ export default defineConfig({
       },
       customCss: ["./src/styles/resources.css", "katex/dist/katex.min.css"],
       tableOfContents: false,
+      sidebar: [
+        {
+          label: "Resources",
+          items: [
+            { autogenerate: { directory: "Resources", collapsed: true } },
+          ],
+        },
+      ],
     }),
     mdx(),
   ],
