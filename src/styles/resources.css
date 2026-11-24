@@ -6,17 +6,15 @@
 
 @theme {
   /* Generated accent color palettes. */
-  --color-accent-200: #a9d6b0;
-  --color-accent-600: #007b34;
-  --color-accent-900: #003e16;
-  --color-accent-950: #012d0f;
+  --color-accent-200: oklch(0.8339 0.1597 149.25);
+  --color-accent-600: oklch(0.773 0.1757 149.3352);
   /* Generated gray color palettes. */
   --color-gray-800: oklch(0.2611 0.002 144.75);
   --color-gray-900: oklch(0.2097 0.002 144.75);
 }
 
 iframe {
-  @apply h-[50vh] w-full;
+  @apply h-[60vh] w-full;
 }
 
 :root {
