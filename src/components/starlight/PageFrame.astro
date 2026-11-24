@@ -1,0 +1,44 @@
+---
+import Navbar from "../Navbar.astro";
+import Footer from "../Footer.astro";
+import ProblemSidebar from "../ProblemSidebar.astro";
+import ProblemDiagram from "../ProblemDiagram.astro";
+
+const { id = "", entry } = Astro.locals.starlightRoute;
+
+const problem = /^resources\/problem\/[^/]+\/(team-\d+)\/(\d+)\/?$/.exec(
+  id,
+);
+const slide = /^resources\/slides\/[^/]+\/([^/]+)\/?$/.exec(id);
+
+const currentSetSlug = problem?.[1];
+const currentProblem = problem ? Number(problem[2]) : undefined;
+const currentLessonSlug = slide?.[1];
+
+const showResources = id === "resources" || id.startsWith("resources/");
+---
+
+<div class="site-chrome">
+  <Navbar />
+  <div class="border-t border-gray-300">
+    <div
+      class="mx-auto flex min-h-screen flex-col gap-10 px-4 py-8 lg:flex-row lg:px-0 lg:py-0 lg:pl-8 lg:pr-16"
+    >
+      {
+        showResources && (
+          <ProblemSidebar
+            {currentSetSlug}
+            {currentProblem}
+            {currentLessonSlug}
+          />
+        )
+      }
+
+      <section class="starlight-content min-w-0 max-w-5xl flex-1 py-16 pl-4">
+        <slot />
+        {entry?.data.diagram && <ProblemDiagram kind={entry.data.diagram} />}
+      </section>
+    </div>
+  </div>
+  <Footer />
+</div>

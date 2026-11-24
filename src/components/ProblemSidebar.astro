@@ -4,7 +4,6 @@ import SidebarDropdown from "./sidebar/SidebarDropdown.astro";
 import { X } from "@lucide/astro";
 import { withBase } from "../utils/url";
 import { problemHref, setSlug } from "../utils/problem-slugs";
-import { slideLessonHref, slideLessonsByYear } from "../utils/slide-lessons";
 import logo from "../assets/logo.avif";
 import Img from "./Img.astro";
 
@@ -17,19 +16,45 @@ interface Props {
 const { currentSetSlug, currentProblem, currentLessonSlug } = Astro.props;
 
 const isIndex =
-  Astro.url.pathname.replace(/\/+$/, "") === withBase("/resources");
+  Astro.url.pathname.replace(/\/+$/, "") === withBase("/resources/overview");
 
-const docs = (await getCollection("problems")).sort((a, b) => {
-  const teamOrder = (id: string) => Number(id.match(/team-(\d+)/)?.[1] ?? 0);
-  const n = (id: string) => Number(id.match(/\/(\d+)$/)?.[1] ?? 0);
-  return teamOrder(a.id) - teamOrder(b.id) || n(a.id) - n(b.id);
-});
+const docs = await getCollection("docs");
+
+const problemDocs = docs
+  .filter((doc) => doc.id.startsWith("resources/problem/"))
+  .sort((a, b) => {
+    const teamOrder = (id: string) => Number(id.match(/team-(\d+)/)?.[1] ?? 0);
+    const n = (id: string) => Number(id.split("/").at(-1) ?? 0);
+    return teamOrder(a.id) - teamOrder(b.id) || n(a.id) - n(b.id);
+  });
+
+const slideDocs = docs
+  .filter((doc) => doc.id.startsWith("resources/slides/"))
+  .sort((a, b) => {
+    const year = (id: string) => id.split("/")[2] ?? "";
+    return (
+      year(a.id).localeCompare(year(b.id)) ||
+      (a.data.sidebar?.order ?? 0) - (b.data.sidebar?.order ?? 0) ||
+      a.data.title.localeCompare(b.data.title)
+    );
+  });
+
+const teamOf = (doc: (typeof problemDocs)[number]) => doc.data.team ?? "";
 
 const sets = [
   ...new Map(
-    docs.map((doc) => [
-      doc.data.team,
-      docs.filter((d) => d.data.team === doc.data.team),
+    problemDocs.map((doc) => [
+      teamOf(doc),
+      problemDocs.filter((d) => teamOf(d) === teamOf(doc)),
+    ]),
+  ).entries(),
+];
+
+const slidesByYear = [
+  ...new Map(
+    slideDocs.map((doc) => [
+      doc.id.split("/")[2] ?? "",
+      slideDocs.filter((d) => d.id.split("/")[2] === doc.id.split("/")[2]),
     ]),
   ).entries(),
 ];
@@ -54,13 +79,13 @@ const sets = [
       items={[
         {
           label: "Overview",
-          href: withBase("/resources"),
+          href: withBase("/resources/overview"),
           active: isIndex,
         },
       ]}
     />
 
-    {slideLessonsByYear.map(([year, lessons]) => (
+    {slidesByYear.map(([year, lessons]) => (
       <SidebarDropdown
         label={year.replace("-", "–")}
         open={currentLessonSlug !== undefined || currentSetSlug !== undefined}
@@ -70,9 +95,9 @@ const sets = [
           label="Slides"
           open={currentLessonSlug !== undefined}
           items={lessons.map((lesson) => ({
-            label: lesson.label,
-            href: slideLessonHref(lesson),
-            active: lesson.slug === currentLessonSlug,
+            label: lesson.data.sidebar?.label ?? lesson.data.title,
+            href: withBase(`/${lesson.id}`),
+            active: lesson.id.split("/").at(-1) === currentLessonSlug,
           }))}
         />
         <SidebarDropdown

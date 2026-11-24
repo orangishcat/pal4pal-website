@@ -14,10 +14,12 @@
   "dependencies": {
     "@astrojs/markdown-satteri": "0.4.5",
     "@astrojs/mdx": "8.1.1",
+    "@astrojs/starlight": "^0.43.1",
     "@lucide/astro": "^1.52.0",
     "@tailwindcss/vite": "^4.3.3",
     "astro": "7.4.2",
     "flowbite": "^4.0.2",
+    "starlight-blog": "^0.30.2",
     "tailwindcss": "^4.3.3"
   },
   "allowScripts": {
