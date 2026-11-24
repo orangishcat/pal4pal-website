@@ -1,0 +1,33 @@
+---
+title: Problem 3
+date: 2026-08-03
+excerpt: Team 3 · Geometry · 4 points
+authors:
+  - name: Yichen
+tags:
+  - Problems
+  - Team 3
+  - Geometry
+team: Team 3
+topic: Geometry
+points: 4
+author: Yichen
+---
+
+Let $ABC$ be an equilateral triangle. Let $P$ be a point inside, such that $PA=6$, $PB=12$, and $PC=6\sqrt3$. Find the side length of the triangle.
+
+<details class="answer">
+
+<summary>Solution</summary>
+
+**Answer:** $6\sqrt7$
+
+Rotate triangle $APC$ by $60^\circ$ counterclockwise to triangle $AP'B$, taking $C$ to $B$. In triangle $APP'$, $\angle P'AP=60^\circ$ and $AP=AP'$, so $PP'=6$.
+
+Triangle $PP'B$ has side lengths $6,6\sqrt3,12$, making it a $30$-$60$-$90$ triangle. The angle relationships give $\angle APB=120^\circ$. By the law of cosines,
+
+$$
+AB^2=6^2+12^2-2\cdot6\cdot12\cos120^\circ=252,\qquad AB=6\sqrt7.
+$$
+
+</details>

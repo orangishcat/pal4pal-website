@@ -1,0 +1,31 @@
+---
+title: Problem 2
+date: 2026-08-04
+excerpt: Team 2 · Number Theory · 5 points
+authors:
+  - name: Samuel
+tags:
+  - Problems
+  - Team 2
+  - Number Theory
+team: Team 2
+topic: Number Theory
+points: 5
+author: Samuel
+---
+
+Find the number of primes $p$ for which there exists a positive integer $m$ that is of the form $12k+2$ such that $48m(47m+1)$ is $p$ times a perfect square.
+
+<details class="answer">
+
+<summary>Solution</summary>
+
+**Answer:** $0$
+
+Suppose $48m(47m+1)=p x^2$. Since $m=12k+2$, any common divisor of $48m$ and $47m+1$ divides $48$, while $47m+1$ is divisible by neither $2$ nor $3$. Thus the two factors are coprime.
+
+One factor must be a square and the other $p$ times a square. But $m\equiv2\pmod4$, so $v_2(48m)=5$; consequently $48m$ cannot be a square. We must have $47m+1=b^2$.
+
+Reducing modulo $12$ gives $b^2\equiv-m+1\equiv11\pmod{12}$, whereas square residues modulo $12$ are $0,1,4,9$. This contradiction shows that no primes work.
+
+</details>

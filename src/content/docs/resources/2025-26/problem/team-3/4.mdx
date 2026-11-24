@@ -1,0 +1,35 @@
+---
+title: Problem 4
+date: 2026-08-03
+excerpt: Team 3 · Combinatorics · 4 points
+authors:
+  - name: Yichen
+tags:
+  - Problems
+  - Team 3
+  - Combinatorics
+team: Team 3
+topic: Combinatorics
+points: 4
+author: Yichen
+---
+
+Kait rolls a fair 6-sided die until she rolls a 6. If she rolls a 6 on the $N$th roll, she then rolls the die $N$ more times. What is the probability that she rolls a 6 during these next $N$ times?
+
+<details class="answer">
+
+<summary>Solution</summary>
+
+**Answer:** $\frac6{11}$
+
+Consider the complementary event. If the first $6$ occurs on turn $i$, the previous $i-1$ rolls and the next $i$ rolls must all be different from $6$. The probability of this is $\left(\frac56\right)^{2i-1}\cdot\frac16$.
+
+Sum over all $i\geq1$. This is a geometric series with initial term $\frac5{36}$ and common ratio $\frac{25}{36}$:
+
+$$
+\Pr(\text{no 6 in the next }N\text{ rolls})=\frac{5/36}{1-25/36}=\frac5{11}.
+$$
+
+Hence the requested probability is $1-\frac5{11}=\frac6{11}$.
+
+</details>

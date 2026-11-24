@@ -1,0 +1,35 @@
+---
+title: Problem 6
+date: 2026-08-02
+excerpt: Team 4 · Number Theory · 4 points
+authors:
+  - name: Andy
+tags:
+  - Problems
+  - Team 4
+  - Number Theory
+team: Team 4
+topic: Number Theory
+points: 4
+author: Andy
+---
+
+Let $n$ be a positive integer. Find the sum of all possible values of $\gcd(5n+11,n+7)$.
+
+<details class="answer">
+
+<summary>Solution</summary>
+
+**Answer:** $60$
+
+By the Euclidean algorithm,
+
+$$
+\gcd(5n+11,n+7)=\gcd(n+7,24).
+$$
+
+Every divisor of $24$ can occur. They are $1,2,3,4,6,8,12,24$, and their sum is $60$.
+
+Bonus problem from the PDF: solve the analogous problem for arbitrary $\gcd(an+b,cn+d)$.
+
+</details>
