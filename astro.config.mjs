@@ -26,6 +26,41 @@ export default defineConfig({
       title: "Pal4Pal Education",
       customCss: ["./src/styles/resources.css", "katex/dist/katex.min.css"],
       tableOfContents: false,
+      sidebar: [
+        { label: "Overview", link: "/resources/" },
+        {
+          label: "2025–26",
+          collapsed: false,
+          items: [
+            {
+              label: "Overview",
+              link: "/resources/2025-26",
+            },
+            {
+              label: "Slides",
+              collapsed: true,
+              items: [
+                { autogenerate: { directory: "resources/2025-26/slides" } },
+              ],
+            },
+            {
+              label: "Problems",
+              collapsed: true,
+              items: [1, 2, 3, 4, 5].map((n) => ({
+                label: `Team ${n}`,
+                collapsed: true,
+                items: [
+                  {
+                    autogenerate: {
+                      directory: `resources/2025-26/problem/team-${n}`,
+                    },
+                  },
+                ],
+              })),
+            },
+          ],
+        },
+      ],
     }),
     mdx(),
   ],
