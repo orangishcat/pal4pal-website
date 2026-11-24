@@ -15,6 +15,7 @@ export default defineConfig({
     starlight({
       title: "Pal4Pal Education",
       customCss: ["./src/styles/resources.css"],
+      tableOfContents: false,
     }),
     mdx(),
   ],

@@ -11,12 +11,14 @@
   --color-accent-900: #003e16;
   --color-accent-950: #012d0f;
   /* Generated gray color palettes. */
-  --color-gray-100: #f5f6f8;
-  --color-gray-200: #eceef2;
-  --color-gray-300: #c0c2c7;
-  --color-gray-400: #888b96;
-  --color-gray-500: #545861;
-  --color-gray-700: #353841;
-  --color-gray-800: #24272f;
-  --color-gray-900: #17181c;
+  --color-gray-800: oklch(0.2611 0.002 144.75);
+  --color-gray-900: oklch(0.2097 0.002 144.75);
+}
+
+iframe {
+  @apply h-[50vh] w-full;
+}
+
+:root {
+  --sl-content-width: 65rem;
 }
